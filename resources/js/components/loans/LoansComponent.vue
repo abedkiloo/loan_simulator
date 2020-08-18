@@ -116,7 +116,7 @@
 </template>
 
 <script>
-import  UserService from "../../services/user.service";
+import userService from "../../services/user.service";
 
 export default {
     data() {
@@ -144,7 +144,7 @@ export default {
         },
         updateCustomer(){
             // this.form.put('api/customer/'+this.form.id)
-            UserService.update(this.form.id,this.form)
+                userService.update(this.form.id,this.form)
                 .then(()=>{
 
                     Toast.fire({
@@ -167,7 +167,7 @@ export default {
         },
 
         loadCustomer() {
-            UserService.getAll().then( data => (this.customers = data.data));
+            userService.getAll().then( data => (this.customers = data.data));
         },
 
         createCustomer(){
@@ -216,7 +216,7 @@ export default {
                                 'Customer deleted successfully',
                                 'success'
                             )
-                            this.loadCustomer();
+                            this.loadUsers();
 
                         }).catch(() => {
                         Swal.fire({

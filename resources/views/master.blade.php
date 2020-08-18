@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,24 +8,17 @@
     <title>Vue js App</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    <style>
+        ul li  {
+           display: inline-block;
+        }
+    </style>
 </head>
 
 <body class="hold-transition sidebar-mini">
 <div class="wrapper" id="app">
 
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <div class="navbar-nav mr-auto">
-                <a href="#" class="navbar-brand">getLoan</a>
-                <ul></ul>
-                <li class="nav-item">
-                    <a href="/customers" class="nav-link">Customers</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/loans" class="nav-link">Loans</a>
-                </li>
-            </div>
-        </nav>
     </aside>
 
     <div class="content-wrapper">

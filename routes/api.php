@@ -16,8 +16,22 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::apiResources(
-	[
-		'customer' => 'Api\UserController',
-	]
-);
+Route::group([], function () {
+
+    Route::post('/login', 'Api\UserController@login')->name('login.api');
+    Route::post('/register', 'Api\UserController@store')->name('register.api');
+    Route::post('/logout', 'Api\UserController@logout')->name('logout.api');
+
+
+});
+
+
+Route::middleware('auth:api')->group(function () {
+
+    Route::apiResources(
+        [
+            'customer' => 'Api\UserController',
+            'loans' => 'Api\LoanController',
+        ]
+    );
+});
