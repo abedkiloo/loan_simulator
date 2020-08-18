@@ -93700,40 +93700,64 @@ var routes = [{
   path: "/",
   name: "home",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/Home */ "./resources/js/components/Home.vue"));
+    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./components/Home */ "./resources/js/components/Home.vue"));
   }
 }, {
   path: "/login",
   name: "login",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/customer/UserLogin */ "./resources/js/components/customer/UserLogin.vue"));
+    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/customer/UserLogin */ "./resources/js/components/customer/UserLogin.vue"));
   }
 }, {
   path: "/register",
   name: "register",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/customer/UserRegister */ "./resources/js/components/customer/UserRegister.vue"));
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/customer/UserRegister */ "./resources/js/components/customer/UserRegister.vue"));
   }
 }, {
   path: "/profile",
   name: "profile",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/customer/UserProfile */ "./resources/js/components/customer/UserProfile.vue"));
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/customer/UserProfile */ "./resources/js/components/customer/UserProfile.vue"));
   }
 }, {
   path: "/customer",
   name: "customers",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./components/customer/UserComponent */ "./resources/js/components/customer/UserComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/customer/UserComponent */ "./resources/js/components/customer/UserComponent.vue"));
   }
 }, {
   path: "/loans",
   alias: "/loans",
   name: "loans",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/loans/LoansComponent */ "./resources/js/components/loans/LoansComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/loans/LoansComponent */ "./resources/js/components/loans/LoansComponent.vue"));
   }
 }];
+
+/***/ }),
+
+/***/ "./resources/js/services/auth-header.js":
+/*!**********************************************!*\
+  !*** ./resources/js/services/auth-header.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return authHeader; });
+function authHeader() {
+  var user = JSON.parse(localStorage.getItem('user'));
+
+  if (user && user.token) {
+    return {
+      Authorization: 'Bearer ' + user.token
+    };
+  } else {
+    return {};
+  }
+}
 
 /***/ }),
 
@@ -93799,6 +93823,56 @@ var AuthService = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./resources/js/services/loans.service.js":
+/*!************************************************!*\
+  !*** ./resources/js/services/loans.service.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _auth_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth-header */ "./resources/js/services/auth-header.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var header = {
+  headers: Object(_auth_header__WEBPACK_IMPORTED_MODULE_1__["default"])()
+};
+
+var LoanService = /*#__PURE__*/function () {
+  function LoanService() {
+    _classCallCheck(this, LoanService);
+  }
+
+  _createClass(LoanService, [{
+    key: "applyApply",
+    value: function applyApply(loan) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/loans', {
+        amount: loan.amount
+      }, header);
+    }
+  }, {
+    key: "userLoans",
+    value: function userLoans(loan) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/loans', header);
+    }
+  }]);
+
+  return LoanService;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new LoanService());
+
+/***/ }),
+
 /***/ "./resources/js/store/auth.module.js":
 /*!*******************************************!*\
   !*** ./resources/js/store/auth.module.js ***!
@@ -93829,7 +93903,6 @@ var auth = {
   actions: {
     login: function login(_ref, user) {
       var commit = _ref.commit;
-      console.log("arrived");
       return _services_auth_service__WEBPACK_IMPORTED_MODULE_0__["default"].login(user).then(function (user) {
         commit('loginSuccess', user);
         return Promise.resolve(user);
@@ -93891,15 +93964,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _auth_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth.module */ "./resources/js/store/auth.module.js");
+/* harmony import */ var _loan_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loan.module */ "./resources/js/store/loan.module.js");
+
 
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
-    auth: _auth_module__WEBPACK_IMPORTED_MODULE_2__["auth"]
+    auth: _auth_module__WEBPACK_IMPORTED_MODULE_2__["auth"],
+    loan: _loan_module__WEBPACK_IMPORTED_MODULE_3__["loan"]
   }
 }));
+
+/***/ }),
+
+/***/ "./resources/js/store/loan.module.js":
+/*!*******************************************!*\
+  !*** ./resources/js/store/loan.module.js ***!
+  \*******************************************/
+/*! exports provided: loan */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loan", function() { return loan; });
+/* harmony import */ var _services_loans_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/loans.service */ "./resources/js/services/loans.service.js");
+
+var initialState = {};
+var loan = {
+  namespaced: true,
+  state: initialState,
+  actions: {
+    apply_loan: function apply_loan(_ref, loan) {
+      var commit = _ref.commit;
+      return _services_loans_service__WEBPACK_IMPORTED_MODULE_0__["default"].applyApply(loan).then(function (user) {
+        commit('applySuccess', user);
+        return Promise.resolve(user);
+      }, function (error) {
+        commit('applyFailure');
+        return Promise.reject(error);
+      });
+    }
+  },
+  mutations: {
+    applySuccess: function applySuccess(state, loan) {
+      state.applied = true;
+      state.loan = loan;
+    },
+    applyFailure: function applyFailure(state) {
+      state.applied = false;
+      state.loan = null;
+    }
+  }
+};
 
 /***/ }),
 

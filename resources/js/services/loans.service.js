@@ -1,30 +1,22 @@
 import axios from 'axios';
+import authHeader from './auth-header';
 
-class loansService {
-    getAll() {
-        return axios.get("/loans");
+let header = {
+    headers: authHeader()
+};
+
+class LoanService {
+
+
+    applyApply(loan) {
+        return axios.post('api/loans', {
+            amount: loan.amount,
+        }, header);
     }
 
-    get(id) {
-        return axios.get(`/loans/${id}`);
+    userLoans(loan) {
+        return axios.get('api/loans',  header);
     }
-
-    create(data) {
-        return axios.post("/loans", data);
-    }
-
-    update(id, data) {
-        return axios.put(`/loans/${id}`, data);
-    }
-
-    delete(id) {
-        return axios.delete(`/loans/${id}`);
-    }
-
-    deleteAll() {
-        return axios.delete(`/loans`);
-    }
-
 }
 
-export default new loansService();
+export default new LoanService();

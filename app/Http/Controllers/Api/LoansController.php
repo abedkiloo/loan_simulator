@@ -6,6 +6,7 @@ use App\Loans;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class LoansController extends Controller
@@ -23,20 +24,19 @@ class LoansController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required',
-            'type' => 'required',
-        ]);
 
+        $this->validate($request, [
+            'amount' => 'required',
+        ]);
         return Loans::create([
             'amount' => $request['amount'],
-            'customer_id' => $request['email'],
+            'customer_id' => Auth::user()->id,
+            'status' => "disbursed",
 
         ]);
     }
@@ -44,7 +44,7 @@ class LoansController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -55,8 +55,8 @@ class LoansController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -67,7 +67,7 @@ class LoansController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
