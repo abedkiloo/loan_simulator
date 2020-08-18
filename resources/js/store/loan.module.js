@@ -1,8 +1,6 @@
 import LoanService from '../services/loans.service';
 
-const initialState = {
-
-}
+const initialState = {}
 
 export const loan = {
     namespaced: true,
@@ -19,6 +17,17 @@ export const loan = {
                     return Promise.reject(error);
                 }
             );
+        }, update_loan({commit}, loan) {
+            return LoanService.updateLoan(loan).then(
+                user => {
+                    commit('updateSuccess', user);
+                    return Promise.resolve(user);
+                },
+                error => {
+                    commit('updateFailure');
+                    return Promise.reject(error);
+                }
+            );
         },
     },
     mutations: {
@@ -28,6 +37,13 @@ export const loan = {
         },
         applyFailure(state) {
             state.applied = false;
+            state.loan = null;
+        }, updateSuccess(state, loan) {
+            state.update = true;
+            state.loan = loan;
+        },
+        updateFailure(state) {
+            state.update = false;
             state.loan = null;
         },
     }

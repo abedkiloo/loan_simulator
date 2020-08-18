@@ -13,6 +13,11 @@ class LoanService {
             amount: loan.amount,
         }, header);
     }
+    updateLoan(loan) {
+        return axios.put('api/loans', {
+            amount: loan.amount,
+        }, header);
+    }
 
     userLoans(loan) {
         return axios.get('api/loans',  header);

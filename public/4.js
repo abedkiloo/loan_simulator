@@ -66,6 +66,56 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -76,7 +126,8 @@ __webpack_require__.r(__webpack_exports__);
       successful: false,
       message: '',
       loans: {},
-      form: new Form({})
+      form: new Form({}),
+      editMode: false
     };
   },
   mounted: function mounted() {
@@ -89,6 +140,18 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    editModalWindow: function editModalWindow(user) {
+      this.form.clear();
+      this.editMode = true;
+      this.form.reset();
+      $('#addNew').modal('show');
+      this.form.fill(user);
+    },
+    openModalWindow: function openModalWindow() {
+      this.editMode = false;
+      this.form.reset();
+      $('#addNew').modal('show');
+    },
     handleApplyLoan: function handleApplyLoan() {
       var _this2 = this;
 
@@ -102,6 +165,23 @@ __webpack_require__.r(__webpack_exports__);
           }, function (error) {
             _this2.message = error.response && error.response.data || error.message || error.toString();
             _this2.successful = false;
+          });
+        }
+      });
+    },
+    updateLoan: function updateLoan() {
+      var _this3 = this;
+
+      this.message = '';
+      this.submitted = true;
+      this.$validator.validate().then(function (isValid) {
+        if (isValid) {
+          _this3.$store.dispatch('loan/update_loan', _this3.loan).then(function (data) {
+            _this3.message = data.message;
+            _this3.successful = true;
+          }, function (error) {
+            _this3.message = error.response && error.response.data || error.message || error.toString();
+            _this3.successful = false;
           });
         }
       });
@@ -140,72 +220,245 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body table-responsive p-0" }, [
-            _c(
-              "form",
-              {
-                attrs: { name: "form" },
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.handleApplyLoan($event)
-                  }
-                }
-              },
-              [
-                !_vm.successful
-                  ? _c("div", [
-                      _c("div", { staticClass: "form-group" }, [
-                        _c("label", { attrs: { for: "amount" } }, [
-                          _vm._v("Amount")
+            _c("div", { staticClass: "card-body table-responsive p-0" }, [
+              _c("table", { staticClass: "table table-hover" }, [
+                _c(
+                  "tbody",
+                  [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _vm._l(_vm.loans, function(loan) {
+                      return _c("tr", { key: loan.id }, [
+                        _c("td", [_vm._v(_vm._s(loan.id))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v("Kshs . " + _vm._s(loan.amount))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(loan.status))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(_vm._s(_vm._f("formatDate")(loan.created_at)))
                         ]),
                         _vm._v(" "),
-                        _c("input", {
-                          directives: [
+                        _c("td", [
+                          _c(
+                            "a",
                             {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.loan.amount,
-                              expression: "loan.amount"
-                            },
-                            {
-                              name: "validate",
-                              rawName: "v-validate",
-                              value: "required",
-                              expression: "'required'"
-                            }
-                          ],
-                          staticClass: "form-control",
-                          attrs: { type: "text", name: "name" },
-                          domProps: { value: _vm.loan.amount },
-                          on: {
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
+                              attrs: { href: "#", "data-id": "user.id" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.editModalWindow(_vm.user)
+                                }
                               }
-                              _vm.$set(_vm.loan, "amount", $event.target.value)
-                            }
+                            },
+                            [_c("i", { staticClass: "fa fa-edit blue" })]
+                          ),
+                          _vm._v(
+                            "\n                                    |\n                                    "
+                          ),
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteUser(_vm.user.id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-trash red" })]
+                          )
+                        ])
+                      ])
+                    })
+                  ],
+                  2
+                )
+              ])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" })
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "addNew",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "addNewLabel",
+              "aria-hidden": "true"
+            }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "modal-dialog modal-dialog-centered",
+                attrs: { role: "document" }
+              },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "h5",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.editMode,
+                            expression: "!editMode"
                           }
-                        }),
-                        _vm._v(" "),
-                        _vm.submitted && _vm.errors.has("amount")
-                          ? _c("div", { staticClass: "alert-danger" }, [
-                              _vm._v(
-                                _vm._s(_vm.errors.first("amount")) +
-                                  "\n                                "
-                              )
+                        ],
+                        staticClass: "modal-title",
+                        attrs: { id: "addNewLabel" }
+                      },
+                      [_vm._v("Add New User")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "h5",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.editMode,
+                            expression: "editMode"
+                          }
+                        ],
+                        staticClass: "modal-title",
+                        attrs: { id: "addNewLabel" }
+                      },
+                      [_vm._v("Update User")]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      attrs: { name: "form" },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.editMode
+                            ? _vm.updateLoan()
+                            : _vm.handleApplyLoan()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-body" }, [
+                        !_vm.successful
+                          ? _c("div", [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c("label", { attrs: { for: "amount" } }, [
+                                  _vm._v("Amount")
+                                ]),
+                                _vm._v(" "),
+                                _c("input", {
+                                  directives: [
+                                    {
+                                      name: "model",
+                                      rawName: "v-model",
+                                      value: _vm.loan.amount,
+                                      expression: "loan.amount"
+                                    },
+                                    {
+                                      name: "validate",
+                                      rawName: "v-validate",
+                                      value: "required",
+                                      expression: "'required'"
+                                    }
+                                  ],
+                                  staticClass: "form-control",
+                                  attrs: { type: "text", name: "name" },
+                                  domProps: { value: _vm.loan.amount },
+                                  on: {
+                                    input: function($event) {
+                                      if ($event.target.composing) {
+                                        return
+                                      }
+                                      _vm.$set(
+                                        _vm.loan,
+                                        "amount",
+                                        $event.target.value
+                                      )
+                                    }
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _vm.submitted && _vm.errors.has("amount")
+                                  ? _c("div", { staticClass: "alert-danger" }, [
+                                      _vm._v(
+                                        _vm._s(_vm.errors.first("amount")) +
+                                          "\n                                        "
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ]),
+                              _vm._v(" "),
+                              _vm._m(3)
                             ])
                           : _vm._e()
                       ]),
                       _vm._v(" "),
-                      _vm._m(1)
-                    ])
-                  : _vm._e()
+                      _c("div", { staticClass: "modal-footer" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { type: "button", "data-dismiss": "modal" }
+                          },
+                          [_vm._v("Close")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.editMode,
+                                expression: "editMode"
+                              }
+                            ],
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v("Update")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: !_vm.editMode,
+                                expression: "!editMode"
+                              }
+                            ],
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v("Create")]
+                        )
+                      ])
+                    ]
+                  )
+                ])
               ]
             )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-footer" })
-        ])
+          ]
+        )
       ])
     ])
   ])
@@ -232,6 +485,37 @@ var staticRenderFns = [
         )
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Amount")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Status")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Borrowed At")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Modify")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
   },
   function() {
     var _vm = this

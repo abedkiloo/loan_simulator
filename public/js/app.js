@@ -93860,6 +93860,13 @@ var LoanService = /*#__PURE__*/function () {
       }, header);
     }
   }, {
+    key: "updateLoan",
+    value: function updateLoan(loan) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put('api/loans', {
+        amount: loan.amount
+      }, header);
+    }
+  }, {
     key: "userLoans",
     value: function userLoans(loan) {
       return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/loans', header);
@@ -94005,6 +94012,16 @@ var loan = {
         commit('applyFailure');
         return Promise.reject(error);
       });
+    },
+    update_loan: function update_loan(_ref2, loan) {
+      var commit = _ref2.commit;
+      return _services_loans_service__WEBPACK_IMPORTED_MODULE_0__["default"].updateLoan(loan).then(function (user) {
+        commit('updateSuccess', user);
+        return Promise.resolve(user);
+      }, function (error) {
+        commit('updateFailure');
+        return Promise.reject(error);
+      });
     }
   },
   mutations: {
@@ -94014,6 +94031,14 @@ var loan = {
     },
     applyFailure: function applyFailure(state) {
       state.applied = false;
+      state.loan = null;
+    },
+    updateSuccess: function updateSuccess(state, loan) {
+      state.update = true;
+      state.loan = loan;
+    },
+    updateFailure: function updateFailure(state) {
+      state.update = false;
       state.loan = null;
     }
   }
