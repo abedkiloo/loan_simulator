@@ -246,26 +246,16 @@ var render = function() {
                               attrs: { href: "#", "data-id": "user.id" },
                               on: {
                                 click: function($event) {
-                                  return _vm.editModalWindow(_vm.user)
+                                  return _vm.editModalWindow(loan)
                                 }
                               }
                             },
-                            [_c("i", { staticClass: "fa fa-edit blue" })]
-                          ),
-                          _vm._v(
-                            "\n                                    |\n                                    "
-                          ),
-                          _c(
-                            "a",
-                            {
-                              attrs: { href: "#" },
-                              on: {
-                                click: function($event) {
-                                  return _vm.deleteUser(_vm.user.id)
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "fa fa-trash red" })]
+                            [
+                              _c("i", { staticClass: "fa fa-edit blue" }),
+                              _vm._v(
+                                "Edit\n                                        "
+                              )
+                            ]
                           )
                         ])
                       ])
@@ -397,7 +387,7 @@ var render = function() {
                                   ? _c("div", { staticClass: "alert-danger" }, [
                                       _vm._v(
                                         _vm._s(_vm.errors.first("amount")) +
-                                          "\n                                        "
+                                          "\n                                            "
                                       )
                                     ])
                                   : _vm._e()

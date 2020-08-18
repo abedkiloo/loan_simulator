@@ -30,13 +30,13 @@
                                     <td>{{ loan.created_at | formatDate }}</td>
 
                                     <td>
-                                        <a href="#" data-id="user.id" @click="editModalWindow(user)">
-                                            <i class="fa fa-edit blue"></i>
+                                        <a href="#" data-id="user.id" @click="editModalWindow(loan)">
+                                            <i class="fa fa-edit blue"></i>Edit
                                         </a>
-                                        |
-                                        <a href="#" @click="deleteUser(user.id)">
-                                            <i class="fa fa-trash red"></i>
-                                        </a>
+<!--                                        |-->
+<!--                                        <a href="#" @click="deleteLoan(loan.id)">-->
+<!--                                            <i class="fa fa-trash red"></i>-->
+<!--                                        </a>-->
 
                                     </td>
                                 </tr>
