@@ -121,7 +121,7 @@
                                             <label for="transaction_id">Transaction</label>
                                             <select
                                                 name="transaction_id"
-                                                v-model="transaction.transaction_id"
+                                                v-model="payment.transaction_id"
                                                 id="transaction_id"
                                                 v-validate="'required'"
                                                 class="form-control">
@@ -141,7 +141,7 @@
                                             <label for="loan_id">Loan</label>
                                             <select
                                                 name="loan_id"
-                                                v-model="loan.loan_id"
+                                                v-model="payment.loan_id"
                                                 id="loan_id"
                                                 v-validate="'required'"
                                                 class="form-control">

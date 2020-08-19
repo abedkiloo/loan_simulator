@@ -631,8 +631,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.transaction.transaction_id,
-                                        expression: "transaction.transaction_id"
+                                        value: _vm.payment.transaction_id,
+                                        expression: "payment.transaction_id"
                                       },
                                       {
                                         name: "validate",
@@ -660,7 +660,7 @@ var render = function() {
                                             return val
                                           })
                                         _vm.$set(
-                                          _vm.transaction,
+                                          _vm.payment,
                                           "transaction_id",
                                           $event.target.multiple
                                             ? $$selectedVal
@@ -720,8 +720,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.loan.loan_id,
-                                        expression: "loan.loan_id"
+                                        value: _vm.payment.loan_id,
+                                        expression: "payment.loan_id"
                                       },
                                       {
                                         name: "validate",
@@ -746,7 +746,7 @@ var render = function() {
                                             return val
                                           })
                                         _vm.$set(
-                                          _vm.loan,
+                                          _vm.payment,
                                           "loan_id",
                                           $event.target.multiple
                                             ? $$selectedVal

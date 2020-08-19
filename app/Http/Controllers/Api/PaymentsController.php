@@ -17,7 +17,7 @@ class PaymentsController extends Controller
      */
     public function index()
     {
-        return Payments::latest()->get();
+        return Payments::with(['loan', 'transaction'])->latest()->get();
     }
 
     /**
@@ -29,8 +29,8 @@ class PaymentsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'loan_id' => 'required|loans,id',
-            'transaction_id' => 'required|transactions,id',
+            'loan_id' => 'required',
+            'transaction_id' => 'required',
         ]);
         return Payments::create([
             'loan_id' => $request['loan_id'],
