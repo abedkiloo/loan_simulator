@@ -173,6 +173,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -465,6 +467,8 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(loan.status))]),
                         _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(loan.customer.name))]),
+                        _vm._v(" "),
                         _c("td", [
                           _vm._v(_vm._s(_vm._f("formatDate")(loan.created_at)))
                         ]),
@@ -732,6 +736,8 @@ var staticRenderFns = [
       _c("th", [_vm._v("Amount")]),
       _vm._v(" "),
       _c("th", [_vm._v("Status")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Customer")]),
       _vm._v(" "),
       _c("th", [_vm._v("Borrowed At")]),
       _vm._v(" "),

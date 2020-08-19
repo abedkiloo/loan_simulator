@@ -72,6 +72,7 @@
                                 <tr>
                                     <th>Amount</th>
                                     <th>Status</th>
+                                    <th>Customer</th>
                                     <th>Borrowed At</th>
                                     <th>Modify</th>
                                 </tr>
@@ -79,6 +80,7 @@
                                 <tr v-for="loan in loans" :key="loan.id">
                                     <td>Kshs . {{ loan.amount }}</td>
                                     <td>{{ loan.status }}</td>
+                                    <td>{{ loan.customer.name }}</td>
                                     <td>{{ loan.created_at | formatDate }}</td>
 
                                     <td>

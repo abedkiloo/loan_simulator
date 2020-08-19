@@ -852,7 +852,7 @@ var staticRenderFns = [
     return _c("tr", [
       _c("th", [_vm._v("Amount")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Refetransactionsrence")]),
+      _c("th", [_vm._v("Transactions Reference")]),
       _vm._v(" "),
       _c("th", [_vm._v("Transacted At")]),
       _vm._v(" "),

@@ -71,7 +71,7 @@
                                 <tbody>
                                 <tr>
                                     <th>Amount</th>
-                                    <th>Refetransactionsrence</th>
+                                    <th>Transactions Reference</th>
                                     <th>Transacted At</th>
                                     <th>Created At</th>
                                 </tr>
