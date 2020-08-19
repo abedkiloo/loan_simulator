@@ -49,8 +49,8 @@
                             class="form-control">
                             <option value="">Select Customer Role</option>
                             <option value="admin">Admin</option>
-                            <option value="user">Standard Customer</option>
-                            <option value="author">Author</option>
+                            <option value="user"> Customer</option>
+                            <option value="funder">Funder</option>
                         </select>
                         <div
                             v-if="submitted && errors.has('type')"
