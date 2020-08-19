@@ -77,9 +77,9 @@
                                     <th>Created At</th>
                                 </tr>
                                 <tr v-for="payment in payments" :key="payment.id">
-                                    <td>{{ payment.amount }}</td>
+                                    <td>{{ payment.transaction.amount }}</td>
                                     <td>Kshs . {{ payment.reference }}</td>
-                                    <td>{{ payment.time }}</td>
+                                    <td>{{ payment.loan.amount }}</td>
                                     <td>{{ payment.created_at | formatDate }}</td>
 
                                     <td>

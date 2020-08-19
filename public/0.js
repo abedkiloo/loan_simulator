@@ -493,13 +493,13 @@ var render = function() {
                     _vm._v(" "),
                     _vm._l(_vm.payments, function(payment) {
                       return _c("tr", { key: payment.id }, [
-                        _c("td", [_vm._v(_vm._s(payment.amount))]),
+                        _c("td", [_vm._v(_vm._s(payment.transaction.amount))]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v("Kshs . " + _vm._s(payment.reference))
                         ]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(payment.time))]),
+                        _c("td", [_vm._v(_vm._s(payment.loan.amount))]),
                         _vm._v(" "),
                         _c("td", [
                           _vm._v(
