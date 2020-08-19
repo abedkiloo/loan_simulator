@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Loans extends Model
+class Transactions extends Model
 {
     protected $fillable = [
-        'amount', "customer_id", 'status'
+        "amount", "customer_id", "time", 'reference'
     ];
 
     public function customer()

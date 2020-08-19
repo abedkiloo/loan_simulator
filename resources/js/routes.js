@@ -2,7 +2,7 @@ export const routes = [
     {
         path: "/",
         name: "home",
-        component: () => import("./components/Home")
+        component: () => import("./components/ExampleComponent")
     },
     {
         path: "/login",
@@ -23,9 +23,12 @@ export const routes = [
     },
     {
         path: "/loans",
-        alias: "/loans",
         name: "loans",
         component: () => import("./components/loans/LoansComponent")
+    }, {
+        path: "/transaction",
+        name: "transaction",
+        component: () => import("./components/transactions/TransactionsComponent")
     },
 
 

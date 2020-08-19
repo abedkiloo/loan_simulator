@@ -19,7 +19,7 @@ class LoanService {
         }, header);
     }
 
-    userLoans(loan) {
+    userLoans() {
         return axios.get('api/loans',  header);
     }
 }

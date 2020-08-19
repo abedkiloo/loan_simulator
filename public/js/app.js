@@ -93700,7 +93700,7 @@ var routes = [{
   path: "/",
   name: "home",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./components/Home */ "./resources/js/components/Home.vue"));
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue"));
   }
 }, {
   path: "/login",
@@ -93728,10 +93728,15 @@ var routes = [{
   }
 }, {
   path: "/loans",
-  alias: "/loans",
   name: "loans",
   component: function component() {
     return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/loans/LoansComponent */ "./resources/js/components/loans/LoansComponent.vue"));
+  }
+}, {
+  path: "/transaction",
+  name: "transaction",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/transactions/TransactionsComponent */ "./resources/js/components/transactions/TransactionsComponent.vue"));
   }
 }];
 
@@ -93868,7 +93873,7 @@ var LoanService = /*#__PURE__*/function () {
     }
   }, {
     key: "userLoans",
-    value: function userLoans(loan) {
+    value: function userLoans() {
       return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/loans', header);
     }
   }]);
@@ -93877,6 +93882,58 @@ var LoanService = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (new LoanService());
+
+/***/ }),
+
+/***/ "./resources/js/services/transactions.service.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/services/transactions.service.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _auth_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth-header */ "./resources/js/services/auth-header.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var header = {
+  headers: Object(_auth_header__WEBPACK_IMPORTED_MODULE_1__["default"])()
+};
+
+var TransactionsService = /*#__PURE__*/function () {
+  function TransactionsService() {
+    _classCallCheck(this, TransactionsService);
+  }
+
+  _createClass(TransactionsService, [{
+    key: "makeTransaction",
+    value: function makeTransaction(loan) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/transactions', {
+        amount: loan.amount,
+        time: loan.time,
+        reference: loan.reference
+      }, header);
+    }
+  }, {
+    key: "userTransactions",
+    value: function userTransactions() {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/transactions', header);
+    }
+  }]);
+
+  return TransactionsService;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new TransactionsService());
 
 /***/ }),
 
@@ -93972,6 +94029,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _auth_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth.module */ "./resources/js/store/auth.module.js");
 /* harmony import */ var _loan_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loan.module */ "./resources/js/store/loan.module.js");
+/* harmony import */ var _transactions_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./transactions.module */ "./resources/js/store/transactions.module.js");
+
 
 
 
@@ -93980,7 +94039,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   modules: {
     auth: _auth_module__WEBPACK_IMPORTED_MODULE_2__["auth"],
-    loan: _loan_module__WEBPACK_IMPORTED_MODULE_3__["loan"]
+    loan: _loan_module__WEBPACK_IMPORTED_MODULE_3__["loan"],
+    transactions: _transactions_module__WEBPACK_IMPORTED_MODULE_4__["transactions"]
   }
 }));
 
@@ -94039,6 +94099,49 @@ var loan = {
     },
     updateFailure: function updateFailure(state) {
       state.update = false;
+      state.loan = null;
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/transactions.module.js":
+/*!***************************************************!*\
+  !*** ./resources/js/store/transactions.module.js ***!
+  \***************************************************/
+/*! exports provided: transactions */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "transactions", function() { return transactions; });
+/* harmony import */ var _services_transactions_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/transactions.service */ "./resources/js/services/transactions.service.js");
+
+var initialState = {};
+var transactions = {
+  namespaced: true,
+  state: initialState,
+  actions: {
+    make_transaction: function make_transaction(_ref, transaction) {
+      var commit = _ref.commit;
+      console.log("arrived");
+      return _services_transactions_service__WEBPACK_IMPORTED_MODULE_0__["default"].makeTransaction(transaction).then(function (transaction) {
+        commit('transactionSuccess', transaction);
+        return Promise.resolve(transaction);
+      }, function (error) {
+        commit('transactionFailure');
+        return Promise.reject(error);
+      });
+    }
+  },
+  mutations: {
+    transactionSuccess: function transactionSuccess(state, loan) {
+      state.transacted = true;
+      state.loan = loan;
+    },
+    transactionFailure: function transactionFailure(state) {
+      state.transacted = false;
       state.loan = null;
     }
   }

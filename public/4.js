@@ -116,6 +116,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -250,12 +255,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [
-                              _c("i", { staticClass: "fa fa-edit blue" }),
-                              _vm._v(
-                                "Edit\n                                        "
-                              )
-                            ]
+                            [_c("i", { staticClass: "fa fa-edit blue" })]
                           )
                         ])
                       ])
@@ -306,7 +306,7 @@ var render = function() {
                         staticClass: "modal-title",
                         attrs: { id: "addNewLabel" }
                       },
-                      [_vm._v("Add New User")]
+                      [_vm._v("Add New Loans")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -323,7 +323,7 @@ var render = function() {
                         staticClass: "modal-title",
                         attrs: { id: "addNewLabel" }
                       },
-                      [_vm._v("Update User")]
+                      [_vm._v("Update Loan")]
                     ),
                     _vm._v(" "),
                     _vm._m(2)
@@ -367,7 +367,7 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-control",
-                                  attrs: { type: "text", name: "name" },
+                                  attrs: { type: "text", name: "amount" },
                                   domProps: { value: _vm.loan.amount },
                                   on: {
                                     input: function($event) {
@@ -397,6 +397,24 @@ var render = function() {
                             ])
                           : _vm._e()
                       ]),
+                      _vm._v(" "),
+                      _vm.message
+                        ? _c(
+                            "div",
+                            {
+                              staticClass: "alert",
+                              class: _vm.successful
+                                ? "alert-success"
+                                : "alert-danger"
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(_vm.message) +
+                                  "\n                                "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-footer" }, [
                         _c(

@@ -66,30 +66,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
-/* harmony default export */ __webpack_exports__["default"] = ({// computed: {
-  //     currentUser() {
-  //         return this.$store.state.auth.user;
-  //     },
-  //     showAdminBoard() {
-  //         if (this.currentUser && this.currentUser.roles) {
-  //             return this.currentUser.roles.includes('ROLE_ADMIN');
-  //         }
-  //         return false;
-  //     },
-  //     showModeratorBoard() {
-  //         if (this.currentUser && this.currentUser.roles) {
-  //             return this.currentUser.roles.includes('ROLE_MODERATOR');
-  //         }
-  //         return false;
-  //     }
-  // },
-  // methods: {
-  //     logOut() {
-  //         this.$store.dispatch('auth/logout');
-  //         this.$router.push('/login');
-  //     }
-  // }
+/* harmony default export */ __webpack_exports__["default"] = ({
+  computed: {
+    currentUser: function currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
+  methods: {
+    logOut: function logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    }
+  }
 });
 
 /***/ }),
@@ -109,7 +101,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "container" }, [
     _c("nav", { staticClass: "navbar navbar-expand navbar-dark bg-dark" }, [
       _c(
         "a",
@@ -135,7 +127,7 @@ var render = function() {
               { staticClass: "nav-link", attrs: { to: "/home" } },
               [
                 _c("font-awesome-icon", { attrs: { icon: "home" } }),
-                _vm._v("\n                        Home\n                    ")
+                _vm._v("\n                    Home\n                ")
               ],
               1
             )
@@ -200,9 +192,7 @@ var render = function() {
                   { staticClass: "nav-link", attrs: { to: "/register" } },
                   [
                     _c("font-awesome-icon", { attrs: { icon: "user-plus" } }),
-                    _vm._v(
-                      "\n                        Sign Up\n                    "
-                    )
+                    _vm._v("\n                    Sign Up\n                ")
                   ],
                   1
                 )
@@ -219,9 +209,7 @@ var render = function() {
                   { staticClass: "nav-link", attrs: { to: "/login" } },
                   [
                     _c("font-awesome-icon", { attrs: { icon: "sign-in-alt" } }),
-                    _vm._v(
-                      "\n                        Login\n                    "
-                    )
+                    _vm._v("\n                    Login\n                ")
                   ],
                   1
                 )
@@ -243,9 +231,9 @@ var render = function() {
                   [
                     _c("font-awesome-icon", { attrs: { icon: "user" } }),
                     _vm._v(
-                      "\n                        " +
+                      "\n                    " +
                         _vm._s(_vm.currentUser.username) +
-                        "\n                    "
+                        "\n                "
                     )
                   ],
                   1
@@ -269,9 +257,7 @@ var render = function() {
                 },
                 [
                   _c("font-awesome-icon", { attrs: { icon: "sign-out-alt" } }),
-                  _vm._v(
-                    "\n                        LogOut\n                    "
-                  )
+                  _vm._v("\n                    LogOut\n                ")
                 ],
                 1
               )
@@ -279,7 +265,8 @@ var render = function() {
           ])
         : _vm._e()
     ]),
-    _vm._v("\nfdgdsgs\n    ")
+    _vm._v(" "),
+    _c("div", { staticClass: "container" })
   ])
 }
 var staticRenderFns = []

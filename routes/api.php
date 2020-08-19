@@ -32,6 +32,7 @@ Route::middleware('auth:api')->group(function () {
         [
             'customer' => 'Api\UserController',
             'loans' => 'Api\LoansController',
+            'transactions' => 'Api\TransactionsController',
         ]
     );
 });
