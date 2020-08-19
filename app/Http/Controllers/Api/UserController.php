@@ -31,7 +31,7 @@ class UserController extends Controller
                 return response($response, 422);
             }
         } else {
-            $response = ["message" => 'User does not exist'];
+            $response = ["message" => 'Customer does not exist'];
             return response($response, 422);
         }
     }
@@ -88,7 +88,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return response()->json([
-            'message' => 'User deleted successfully'
+            'message' => 'Customer deleted successfully'
         ]);
     }
 }

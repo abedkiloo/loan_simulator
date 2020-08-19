@@ -29,6 +29,10 @@ export const routes = [
         path: "/transaction",
         name: "transaction",
         component: () => import("./components/transactions/TransactionsComponent")
+    }, {
+        path: "/payment",
+        name: "payment",
+        component: () => import("./components/payments/PaymentsComponent")
     },
 
 

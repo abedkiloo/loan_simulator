@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _models_user__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/user */ "./resources/js/models/user.js");
+/* harmony import */ var _models_customer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/customer */ "./resources/js/models/customer.js");
 //
 //
 //
@@ -111,7 +111,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'Register',
   data: function data() {
     return {
-      user: new _models_user__WEBPACK_IMPORTED_MODULE_0__["default"]('', '', ''),
+      user: new _models_customer__WEBPACK_IMPORTED_MODULE_0__["default"]('', '', ''),
       submitted: false,
       successful: false,
       message: ''
@@ -318,7 +318,7 @@ var render = function() {
                     },
                     [
                       _c("option", { attrs: { value: "" } }, [
-                        _vm._v("Select User Role")
+                        _vm._v("Select Customer Role")
                       ]),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "admin" } }, [
@@ -326,7 +326,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "user" } }, [
-                        _vm._v("Standard User")
+                        _vm._v("Standard Customer")
                       ]),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "author" } }, [
@@ -617,24 +617,25 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/models/user.js":
-/*!*************************************!*\
-  !*** ./resources/js/models/user.js ***!
-  \*************************************/
+/***/ "./resources/js/models/customer.js":
+/*!*****************************************!*\
+  !*** ./resources/js/models/customer.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return User; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Customer; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var User = function User(name, email, type, password) {
-  _classCallCheck(this, User);
+var Customer = function Customer(name, email, type, password, id) {
+  _classCallCheck(this, Customer);
 
   this.name = name;
   this.type = type;
   this.email = email;
+  this.id = id;
   this.password = password;
 };
 

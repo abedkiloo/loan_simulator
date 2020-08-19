@@ -733,15 +733,46 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Loan; });
+/* harmony import */ var _customer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./customer */ "./resources/js/models/customer.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Loan = function Loan(amount, customer_id, status, created_at) {
+
+
+var Loan = function Loan(amount, customer_id, status, created_at, id) {
   _classCallCheck(this, Loan);
 
   this.amount = amount;
+  this.Customer = _customer__WEBPACK_IMPORTED_MODULE_0__["default"];
   this.customer_id = customer_id;
   this.status = status;
   this.created_at = created_at;
+  this.id = id;
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/js/models/customer.js":
+/*!*****************************************!*\
+  !*** ./resources/js/models/customer.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Customer; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Customer = function Customer(name, email, type, password, id) {
+  _classCallCheck(this, Customer);
+
+  this.name = name;
+  this.type = type;
+  this.email = email;
+  this.id = id;
+  this.password = password;
 };
 
 

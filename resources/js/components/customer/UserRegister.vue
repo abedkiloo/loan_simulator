@@ -47,9 +47,9 @@
                             id="type"
                             v-validate="'required'"
                             class="form-control">
-                            <option value="">Select User Role</option>
+                            <option value="">Select Customer Role</option>
                             <option value="admin">Admin</option>
-                            <option value="user">Standard User</option>
+                            <option value="user">Standard Customer</option>
                             <option value="author">Author</option>
                         </select>
                         <div
@@ -95,13 +95,13 @@
 </template>
 
 <script>
-import User from '../../models/user';
+import Customer from '../../models/customer';
 
 export default {
     name: 'Register',
     data() {
         return {
-            user: new User('', '', ''),
+            user: new Customer('', '', ''),
             submitted: false,
             successful: false,
             message: ''

@@ -59,13 +59,13 @@
 </template>
 
 <script>
-import User from '../../models/user';
+import Customer from '../../models/customer';
 
 export default {
     name: 'Login',
     data() {
         return {
-            user: new User('', ''),
+            user: new Customer('', ''),
             loading: false,
             message: ''
         };

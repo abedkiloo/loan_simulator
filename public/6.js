@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _models_transction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/transction */ "./resources/js/models/transction.js");
+/* harmony import */ var _models_transaction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/transaction */ "./resources/js/models/transaction.js");
 /* harmony import */ var _services_transactions_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/transactions.service */ "./resources/js/services/transactions.service.js");
 //
 //
@@ -161,7 +161,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      transaction: new _models_transction__WEBPACK_IMPORTED_MODULE_0__["default"]('', '', ''),
+      transaction: new _models_transaction__WEBPACK_IMPORTED_MODULE_0__["default"]('', '', ''),
       submitted: false,
       successful: false,
       message: '',
@@ -363,7 +363,7 @@ var render = function() {
                         submit: function($event) {
                           $event.preventDefault()
                           _vm.editMode
-                            ? _vm.updateLoan()
+                            ? _vm.updatePayment()
                             : _vm.handleMakeTransaction()
                         }
                       }
@@ -656,7 +656,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("button", { staticClass: "btn btn-primary btn-block" }, [
-        _vm._v("Apply Loan")
+        _vm._v("Submit Payment")
       ])
     ])
   }
@@ -848,22 +848,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/models/transction.js":
-/*!*******************************************!*\
-  !*** ./resources/js/models/transction.js ***!
-  \*******************************************/
+/***/ "./resources/js/models/transaction.js":
+/*!********************************************!*\
+  !*** ./resources/js/models/transaction.js ***!
+  \********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Transction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Transaction; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Transction = function Transction(amount, customer_id, reference, time, created_at) {
-  _classCallCheck(this, Transction);
+var Transaction = function Transaction(amount, customer_id, reference, time, created_at, id) {
+  _classCallCheck(this, Transaction);
 
   this.amount = amount;
+  this.id = id;
   this.customer_id = customer_id;
   this.reference = reference;
   this.created_at = created_at;

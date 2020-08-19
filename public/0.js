@@ -1,15 +1,95 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[0],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Home.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Home.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/payments/PaymentsComponent.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/payments/PaymentsComponent.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _services_user_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/user.service */ "./resources/js/services/user.service.js");
+/* harmony import */ var _models_transaction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/transaction */ "./resources/js/models/transaction.js");
+/* harmony import */ var _models_loan__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/loan */ "./resources/js/models/loan.js");
+/* harmony import */ var _models_payment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/payment */ "./resources/js/models/payment.js");
+/* harmony import */ var _services_payments_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/payments.service */ "./resources/js/services/payments.service.js");
+/* harmony import */ var _services_loans_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/loans.service */ "./resources/js/services/loans.service.js");
+/* harmony import */ var _services_transactions_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/transactions.service */ "./resources/js/services/transactions.service.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -70,26 +150,94 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
+
+
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      transaction: new _models_transaction__WEBPACK_IMPORTED_MODULE_0__["default"]('', '', ''),
+      loan: new _models_loan__WEBPACK_IMPORTED_MODULE_1__["default"]('', '', ''),
+      payment: new _models_payment__WEBPACK_IMPORTED_MODULE_2__["default"]('', '', ''),
+      submitted: false,
+      successful: false,
+      message: '',
+      payments: {},
+      transactions: {},
+      loans: {},
+      form: new Form({}),
+      editMode: false
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    _services_payments_service__WEBPACK_IMPORTED_MODULE_3__["default"].userPayments().then(function (response) {
+      _this.payments = response.data;
+    }, function (error) {
+      _this.content = error.response && error.response.data || error.message || error.toString();
+    });
+    _services_transactions_service__WEBPACK_IMPORTED_MODULE_5__["default"].userTransactions().then(function (response) {
+      _this.transactions = response.data;
+    }, function (error) {
+      _this.content = error.response && error.response.data || error.message || error.toString();
+    });
+    _services_loans_service__WEBPACK_IMPORTED_MODULE_4__["default"].userLoans().then(function (response) {
+      _this.loans = response.data;
+    }, function (error) {
+      _this.content = error.response && error.response.data || error.message || error.toString();
+    });
+  },
+  methods: {
+    editModalWindow: function editModalWindow(user) {
+      this.form.clear();
+      this.editMode = true;
+      this.form.reset();
+      $('#addNew').modal('show');
+      this.form.fill(user);
+    },
+    openModalWindow: function openModalWindow() {
+      this.editMode = false;
+      this.form.reset();
+      $('#addNew').modal('show');
+    },
+    handleMakeTransaction: function handleMakeTransaction() {
+      var _this2 = this;
+
+      this.message = '';
+      this.submitted = true;
+      this.$validator.validate().then(function (isValid) {
+        if (isValid) {
+          _this2.$store.dispatch('payments/make_payment', _this2.payment).then(function (data) {
+            _this2.message = data.message;
+            _this2.successful = true;
+          }, function (error) {
+            _this2.message = error.response && error.response.data || error.message || error.toString();
+            _this2.successful = false;
+          });
+        }
+      });
+    }
+  },
   computed: {
+    applied: function applied() {
+      return this.$store.state.payments.applied;
+    },
     currentUser: function currentUser() {
       return this.$store.state.auth.user;
     }
   },
-  methods: {
-    logOut: function logOut() {
-      this.$store.dispatch('auth/logout');
-      this.$router.push('/login');
-    }
-  }
+  created: function created() {}
 });
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&":
-/*!*******************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Home.vue?vue&type=template&id=f2b6376c& ***!
-  \*******************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/payments/PaymentsComponent.vue?vue&type=template&id=30bb954e&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/payments/PaymentsComponent.vue?vue&type=template&id=30bb954e& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -102,174 +250,450 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("nav", { staticClass: "navbar navbar-expand navbar-dark bg-dark" }, [
-      _c(
-        "a",
-        {
-          staticClass: "navbar-brand",
-          attrs: { href: "" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-            }
-          }
-        },
-        [_vm._v("bezKoder")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "navbar-nav mr-auto" }, [
-        _c(
-          "li",
-          { staticClass: "nav-item" },
-          [
-            _c(
-              "router-link",
-              { staticClass: "nav-link", attrs: { to: "/home" } },
-              [
-                _c("font-awesome-icon", { attrs: { icon: "home" } }),
-                _vm._v("\n                    Home\n                ")
-              ],
-              1
-            )
-          ],
-          1
-        ),
-        _vm._v(" "),
-        _vm.showAdminBoard
-          ? _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: "/admin" } },
-                  [_vm._v("Admin Board")]
-                )
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.showModeratorBoard
-          ? _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: "/mod" } },
-                  [_vm._v("Moderator Board")]
-                )
-              ],
-              1
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "li",
-          { staticClass: "nav-item" },
-          [
-            _vm.currentUser
-              ? _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: "/user" } },
-                  [_vm._v("User")]
-                )
+    _c("div", { staticClass: "row mt-5" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _c("h3", { staticClass: "card-title" }, [_vm._v("Payments ")]),
+            _vm._v(" "),
+            _vm.currentUser.type == "user"
+              ? _c("div", { staticClass: "card-tools" }, [_vm._m(0)])
               : _vm._e()
-          ],
-          1
-        )
-      ]),
-      _vm._v(" "),
-      !_vm.currentUser
-        ? _c("div", { staticClass: "navbar-nav ml-auto" }, [
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body table-responsive p-0" }, [
+            _c("div", { staticClass: "card-body table-responsive p-0" }, [
+              _c("table", { staticClass: "table table-hover" }, [
                 _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: "/register" } },
+                  "tbody",
                   [
-                    _c("font-awesome-icon", { attrs: { icon: "user-plus" } }),
-                    _vm._v("\n                    Sign Up\n                ")
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _vm._l(_vm.payments, function(payment) {
+                      return _c("tr", { key: payment.id }, [
+                        _c("td", [_vm._v(_vm._s(payment.amount))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v("Kshs . " + _vm._s(payment.reference))
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(payment.time))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _vm._v(
+                            _vm._s(_vm._f("formatDate")(payment.created_at))
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#", "data-id": "user.id" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.editModalWindow(payment)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", { staticClass: "fa fa-edit blue" }),
+                              _vm._v(
+                                "Edit\n                                    "
+                              )
+                            ]
+                          )
+                        ])
+                      ])
+                    })
                   ],
-                  1
+                  2
                 )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: "/login" } },
-                  [
-                    _c("font-awesome-icon", { attrs: { icon: "sign-in-alt" } }),
-                    _vm._v("\n                    Login\n                ")
-                  ],
-                  1
-                )
-              ],
-              1
-            )
-          ])
-        : _vm._e(),
-      _vm._v(" "),
-      _vm.currentUser
-        ? _c("div", { staticClass: "navbar-nav ml-auto" }, [
-            _c(
-              "li",
-              { staticClass: "nav-item" },
-              [
-                _c(
-                  "router-link",
-                  { staticClass: "nav-link", attrs: { to: "/profile" } },
-                  [
-                    _c("font-awesome-icon", { attrs: { icon: "user" } }),
-                    _vm._v(
-                      "\n                    " +
-                        _vm._s(_vm.currentUser.username) +
-                        "\n                "
-                    )
-                  ],
-                  1
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link",
-                  attrs: { href: "" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.logOut($event)
-                    }
-                  }
-                },
-                [
-                  _c("font-awesome-icon", { attrs: { icon: "sign-out-alt" } }),
-                  _vm._v("\n                    LogOut\n                ")
-                ],
-                1
-              )
+              ])
             ])
-          ])
-        : _vm._e()
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "container" })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-footer" })
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "modal fade",
+            attrs: {
+              id: "addNew",
+              tabindex: "-1",
+              role: "dialog",
+              "aria-labelledby": "addNewLabel",
+              "aria-hidden": "true"
+            }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "modal-dialog modal-dialog-centered",
+                attrs: { role: "document" }
+              },
+              [
+                _c("div", { staticClass: "modal-content" }, [
+                  _c("div", { staticClass: "modal-header" }, [
+                    _c(
+                      "h5",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: !_vm.editMode,
+                            expression: "!editMode"
+                          }
+                        ],
+                        staticClass: "modal-title",
+                        attrs: { id: "addNewLabel" }
+                      },
+                      [_vm._v("Add New Transaction")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "h5",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.editMode,
+                            expression: "editMode"
+                          }
+                        ],
+                        staticClass: "modal-title",
+                        attrs: { id: "addNewLabel" }
+                      },
+                      [_vm._v("Update Transaction")]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "form",
+                    {
+                      attrs: { name: "form" },
+                      on: {
+                        submit: function($event) {
+                          $event.preventDefault()
+                          _vm.editMode
+                            ? _vm.updateLoan()
+                            : _vm.handleMakeTransaction()
+                        }
+                      }
+                    },
+                    [
+                      _c("div", { staticClass: "modal-body" }, [
+                        !_vm.successful
+                          ? _c("div", [
+                              _c("div", { staticClass: "form-group" }, [
+                                _c("label", { attrs: { for: "type" } }, [
+                                  _vm._v("Transaction")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.transaction.reference,
+                                        expression: "transaction.reference"
+                                      },
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: "required",
+                                        expression: "'required'"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: {
+                                      name: "transaction_id",
+                                      id: "transaction_id"
+                                    },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.transaction,
+                                          "reference",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "" } }, [
+                                      _vm._v("Select Transaction")
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.transactions, function(
+                                      transaction
+                                    ) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: transaction.id,
+                                          domProps: { value: transaction.id }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                " +
+                                              _vm._s(transaction.reference)
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _vm.submitted && _vm.errors.has("type")
+                                  ? _c("div", { staticClass: "alert-danger" }, [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.errors.first("transaction_id")
+                                        ) +
+                                          "\n                                        "
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "form-group" }, [
+                                _c("label", { attrs: { for: "type" } }, [
+                                  _vm._v("Loan")
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "select",
+                                  {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.loan.loan_id,
+                                        expression: "loan.loan_id"
+                                      },
+                                      {
+                                        name: "validate",
+                                        rawName: "v-validate",
+                                        value: "required",
+                                        expression: "'required'"
+                                      }
+                                    ],
+                                    staticClass: "form-control",
+                                    attrs: { name: "loan_id", id: "loan_id" },
+                                    on: {
+                                      change: function($event) {
+                                        var $$selectedVal = Array.prototype.filter
+                                          .call($event.target.options, function(
+                                            o
+                                          ) {
+                                            return o.selected
+                                          })
+                                          .map(function(o) {
+                                            var val =
+                                              "_value" in o ? o._value : o.value
+                                            return val
+                                          })
+                                        _vm.$set(
+                                          _vm.loan,
+                                          "loan_id",
+                                          $event.target.multiple
+                                            ? $$selectedVal
+                                            : $$selectedVal[0]
+                                        )
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("option", { attrs: { value: "" } }, [
+                                      _vm._v("Select Transaction")
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._l(_vm.loans, function(loan) {
+                                      return _c(
+                                        "option",
+                                        {
+                                          key: loan.id,
+                                          domProps: { value: loan.customer_id }
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                                " +
+                                              _vm._s(loan.amount)
+                                          )
+                                        ]
+                                      )
+                                    })
+                                  ],
+                                  2
+                                ),
+                                _vm._v(" "),
+                                _vm.submitted && _vm.errors.has("type")
+                                  ? _c("div", { staticClass: "alert-danger" }, [
+                                      _vm._v(
+                                        _vm._s(_vm.errors.first("loan_id")) +
+                                          "\n                                        "
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ]),
+                              _vm._v(" "),
+                              _vm._m(3)
+                            ])
+                          : _vm._e()
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "modal-footer" }, [
+                        _c(
+                          "button",
+                          {
+                            staticClass: "btn btn-danger",
+                            attrs: { type: "button", "data-dismiss": "modal" }
+                          },
+                          [_vm._v("Close")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: _vm.editMode,
+                                expression: "editMode"
+                              }
+                            ],
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v("Update")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "button",
+                          {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: !_vm.editMode,
+                                expression: "!editMode"
+                              }
+                            ],
+                            staticClass: "btn btn-primary",
+                            attrs: { type: "submit" }
+                          },
+                          [_vm._v("Create")]
+                        )
+                      ])
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm.message
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "alert",
+                          class: _vm.successful
+                            ? "alert-success"
+                            : "alert-danger"
+                        },
+                        [
+                          _vm._v(
+                            _vm._s(_vm.message) + "\n                        "
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                ])
+              ]
+            )
+          ]
+        )
+      ])
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-success",
+        attrs: { "data-toggle": "modal", "data-target": "#addNew" }
+      },
+      [_vm._v("Add New "), _c("i", { staticClass: "fas fa-user-plus fa-fw" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", [
+      _c("th", [_vm._v("Amount")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Reference")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Loan Amount")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("Created At")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-group" }, [
+      _c("button", { staticClass: "btn btn-primary btn-block" }, [
+        _vm._v("Include Transaction")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -388,18 +812,18 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ "./resources/js/components/Home.vue":
-/*!******************************************!*\
-  !*** ./resources/js/components/Home.vue ***!
-  \******************************************/
+/***/ "./resources/js/components/payments/PaymentsComponent.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/payments/PaymentsComponent.vue ***!
+  \****************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Home.vue?vue&type=template&id=f2b6376c& */ "./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&");
-/* harmony import */ var _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Home.vue?vue&type=script&lang=js& */ "./resources/js/components/Home.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _PaymentsComponent_vue_vue_type_template_id_30bb954e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PaymentsComponent.vue?vue&type=template&id=30bb954e& */ "./resources/js/components/payments/PaymentsComponent.vue?vue&type=template&id=30bb954e&");
+/* harmony import */ var _PaymentsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PaymentsComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/payments/PaymentsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -408,9 +832,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _PaymentsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PaymentsComponent_vue_vue_type_template_id_30bb954e___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PaymentsComponent_vue_vue_type_template_id_30bb954e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -420,108 +844,148 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/Home.vue"
+component.options.__file = "resources/js/components/payments/PaymentsComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/Home.vue?vue&type=script&lang=js&":
-/*!*******************************************************************!*\
-  !*** ./resources/js/components/Home.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************/
+/***/ "./resources/js/components/payments/PaymentsComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/payments/PaymentsComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./Home.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Home.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./PaymentsComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/payments/PaymentsComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&":
-/*!*************************************************************************!*\
-  !*** ./resources/js/components/Home.vue?vue&type=template&id=f2b6376c& ***!
-  \*************************************************************************/
+/***/ "./resources/js/components/payments/PaymentsComponent.vue?vue&type=template&id=30bb954e&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/payments/PaymentsComponent.vue?vue&type=template&id=30bb954e& ***!
+  \***********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./Home.vue?vue&type=template&id=f2b6376c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Home.vue?vue&type=template&id=f2b6376c&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentsComponent_vue_vue_type_template_id_30bb954e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./PaymentsComponent.vue?vue&type=template&id=30bb954e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/payments/PaymentsComponent.vue?vue&type=template&id=30bb954e&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentsComponent_vue_vue_type_template_id_30bb954e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Home_vue_vue_type_template_id_f2b6376c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaymentsComponent_vue_vue_type_template_id_30bb954e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/services/user.service.js":
-/*!***********************************************!*\
-  !*** ./resources/js/services/user.service.js ***!
-  \***********************************************/
+/***/ "./resources/js/models/customer.js":
+/*!*****************************************!*\
+  !*** ./resources/js/models/customer.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Customer; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+var Customer = function Customer(name, email, type, password, id) {
+  _classCallCheck(this, Customer);
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+  this.name = name;
+  this.type = type;
+  this.email = email;
+  this.id = id;
+  this.password = password;
+};
 
 
 
-var UserService = /*#__PURE__*/function () {
-  function UserService() {
-    _classCallCheck(this, UserService);
-  }
+/***/ }),
 
-  _createClass(UserService, [{
-    key: "getAll",
-    value: function getAll() {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/customer");
-    }
-  }, {
-    key: "get",
-    value: function get(id) {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/customer/".concat(id));
-    }
-  }, {
-    key: "create",
-    value: function create(data) {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/customer", data);
-    }
-  }, {
-    key: "update",
-    value: function update(id, data) {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/customer/".concat(id), data);
-    }
-  }, {
-    key: "delete",
-    value: function _delete(id) {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/customer/".concat(id));
-    }
-  }, {
-    key: "deleteAll",
-    value: function deleteAll() {
-      return axios__WEBPACK_IMPORTED_MODULE_0___default.a["delete"]("/customer");
-    }
-  }, {
-    key: "getPublicContent",
-    value: function getPublicContent() {
-      return "axios.get( 'all');";
-    }
-  }]);
+/***/ "./resources/js/models/loan.js":
+/*!*************************************!*\
+  !*** ./resources/js/models/loan.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-  return UserService;
-}();
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Loan; });
+/* harmony import */ var _customer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./customer */ "./resources/js/models/customer.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-/* harmony default export */ __webpack_exports__["default"] = (new UserService());
+
+
+var Loan = function Loan(amount, customer_id, status, created_at, id) {
+  _classCallCheck(this, Loan);
+
+  this.amount = amount;
+  this.Customer = _customer__WEBPACK_IMPORTED_MODULE_0__["default"];
+  this.customer_id = customer_id;
+  this.status = status;
+  this.created_at = created_at;
+  this.id = id;
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/js/models/payment.js":
+/*!****************************************!*\
+  !*** ./resources/js/models/payment.js ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Payment; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Payment = function Payment(loan_id, transaction_id, created_at, id) {
+  _classCallCheck(this, Payment);
+
+  this.loan_id = loan_id;
+  this.transaction_id = transaction_id;
+  this.created_at = created_at;
+  this.id = id;
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/js/models/transaction.js":
+/*!********************************************!*\
+  !*** ./resources/js/models/transaction.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Transaction; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Transaction = function Transaction(amount, customer_id, reference, time, created_at, id) {
+  _classCallCheck(this, Transaction);
+
+  this.amount = amount;
+  this.id = id;
+  this.customer_id = customer_id;
+  this.reference = reference;
+  this.created_at = created_at;
+  this.time = time;
+};
+
+
 
 /***/ })
 

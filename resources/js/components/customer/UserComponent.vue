@@ -92,7 +92,7 @@
 
                             <div class="form-group">
                                 <select name="type" v-model="form.type" id="type" class="form-control" :class="{ 'is-invalid': form.errors.has('type') }">
-                                    <option value="">Select User Role</option>
+                                    <option value="">Select Customer Role</option>
                                     <option value="admin">Admin</option>
                                     <option value="user">Customer</option>
                                 </select>
@@ -181,7 +181,7 @@ export default {
 
                     Toast.fire({
                         icon: 'success',
-                        title: 'User created successfully'
+                        title: 'Customer created successfully'
                     })
 
                     this.$Progress.finish()

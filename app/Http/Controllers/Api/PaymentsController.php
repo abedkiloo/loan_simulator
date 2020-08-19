@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Api;
 
 use App\Loans;
-use App\Loan;
+use App\Payments;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
-class LoansController extends Controller
+class PaymentsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,10 +17,7 @@ class LoansController extends Controller
      */
     public function index()
     {
-        if (isset(Auth::user()->id) && Auth::user()->type!="admin")
-            return Loans::with(['customer'])->where('customer_id', Auth::user()->id)->latest()->get();
-        else
-            return Loans::with(['customer'])->latest()->get();
+        return Payments::latest()->get();
     }
 
     /**
@@ -32,15 +28,13 @@ class LoansController extends Controller
      */
     public function store(Request $request)
     {
-
         $this->validate($request, [
-            'amount' => 'required',
+            'loan_id' => 'required|loans,id',
+            'transaction_id' => 'required|transactions,id',
         ]);
-        return Loans::create([
-            'amount' => $request['amount'],
-            'customer_id' => Auth::user()->id,
-            'status' => "disbursed",
-
+        return Payments::create([
+            'loan_id' => $request['loan_id'],
+            'transaction_id' => $request['transaction_id'],
         ]);
     }
 
@@ -65,10 +59,11 @@ class LoansController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'amount' => 'required',
+            'loan_id' => 'required|loans,id',
+            'transaction_id' => 'required|transactions,id',
         ]);
 
-        $payment = Loans::findOrFail($id);
+        $payment = Payments::findOrFail($id);
 
         $payment->update($request->all());
     }
@@ -81,10 +76,6 @@ class LoansController extends Controller
      */
     public function destroy($id)
     {
-        $loan = Loans::findOrFail($id);
-        $loan->delete();
-        return response()->json([
-            'message' => 'Loan deleted successfully'
-        ]);
+        //
     }
 }

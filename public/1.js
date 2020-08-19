@@ -185,7 +185,7 @@ __webpack_require__.r(__webpack_exports__);
 
         Toast.fire({
           icon: 'success',
-          title: 'User created successfully'
+          title: 'Customer created successfully'
         });
 
         _this2.$Progress.finish();
@@ -583,7 +583,7 @@ var render = function() {
                           },
                           [
                             _c("option", { attrs: { value: "" } }, [
-                              _vm._v("Select User Role")
+                              _vm._v("Select Customer Role")
                             ]),
                             _vm._v(" "),
                             _c("option", { attrs: { value: "admin" } }, [

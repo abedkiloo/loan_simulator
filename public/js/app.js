@@ -64989,7 +64989,7 @@ __webpack_require__.r(__webpack_exports__);
   * (c) 2019 Abdelrahman Awad
   * @license MIT
   */
-// 
+//
 
 var isTextInput = function (el) {
   return includes(['text', 'password', 'search', 'email', 'tel', 'url', 'textarea', 'number'], el.type);
@@ -65654,7 +65654,7 @@ var defineNonReactive = function (obj, prop, value) {
   });
 };
 
-// 
+//
 
 var LOCALE = 'en';
 
@@ -65768,7 +65768,7 @@ Dictionary.prototype.setMessage = function setMessage (locale, key, message) {
       attributes: {}
     };
   }
-    
+
   if (!this.container[locale].messages) {
     this.container[locale].messages = {};
   }
@@ -65824,7 +65824,7 @@ DictionaryResolver.getDriver = function getDriver () {
   return drivers[currentDriver];
 };
 
-// 
+//
 
 var ErrorBag = function ErrorBag (errorBag, id) {
   if ( errorBag === void 0 ) errorBag = null;
@@ -66754,7 +66754,7 @@ RuleContainer.getValidatorMethod = function getValidatorMethod (ruleName) {
 
 Object.defineProperties( RuleContainer, staticAccessors );
 
-// 
+//
 
 var isEvent = function (evt) {
   return (typeof Event !== 'undefined' && isCallable(Event) && evt instanceof Event) || (evt && evt.srcElement);
@@ -66787,7 +66787,7 @@ var addEventListener = function (el, eventName, cb) {
   el.addEventListener(eventName, cb, supportsPassive ? { passive: true } : false);
 };
 
-// 
+//
 
 var DEFAULT_OPTIONS = {
   targetOf: null,
@@ -67509,7 +67509,7 @@ Field.prototype.destroy = function destroy () {
 
 Object.defineProperties( Field.prototype, prototypeAccessors$1 );
 
-// 
+//
 
 var FieldBag = function FieldBag (items) {
   if ( items === void 0 ) items = [];
@@ -67784,7 +67784,7 @@ var setValidator = function (value) {
   return value;
 };
 
-// 
+//
 
 /**
  * Checks if a parent validator instance was requested.
@@ -67875,7 +67875,7 @@ var mixin = {
   }
 };
 
-// 
+//
 
 /**
  * Finds the requested field by id from the context object.
@@ -67937,7 +67937,7 @@ var directive = {
   }
 };
 
-// 
+//
 
 var Validator = function Validator (validations, options, pluginContainer) {
   if ( options === void 0 ) options = { fastExit: true };
@@ -68803,7 +68803,7 @@ Validator.prototype._validate = function _validate (field, value, ref) {
 Object.defineProperties( Validator.prototype, prototypeAccessors$4 );
 Object.defineProperties( Validator, staticAccessors$1 );
 
-// 
+//
 
 var normalizeValue = function (value) {
   if (isObject(value)) {
@@ -68976,7 +68976,7 @@ var modes = {
   lazy: lazy
 };
 
-// 
+//
 
 var Vue;
 var pendingPlugins;
@@ -72197,7 +72197,7 @@ function normalizeTwoDigitYear (twoDigitYear, currentYear) {
 var DAYS_IN_MONTH$1 = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 var DAYS_IN_MONTH_LEAP_YEAR$1 = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 
-// User for validation
+// Customer for validation
 function isLeapYearIndex$1 (year) {
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0)
 }
@@ -73642,7 +73642,7 @@ function cleanEscapedString$1(input) {
   return input.match(escapedStringRegExp$1)[1].replace(doubleQuoteRegExp$1, "'")
 }
 
-// 
+//
 
 /**
  * Custom parse behavior on top of date-fns parse function.
@@ -75177,7 +75177,7 @@ var Rules = /*#__PURE__*/Object.freeze({
   url: url
 });
 
-// 
+//
 
 var normalize = function (fields) {
   if (Array.isArray(fields)) {
@@ -76771,7 +76771,7 @@ var staticRenderFns = []
   }
 });
 // CONCATENATED MODULE: ./src/components/HasError.vue?vue&type=script&lang=js&
- /* harmony default export */ var components_HasErrorvue_type_script_lang_js_ = (HasErrorvue_type_script_lang_js_); 
+ /* harmony default export */ var components_HasErrorvue_type_script_lang_js_ = (HasErrorvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
 /* globals __VUE_SSR_CONTEXT__ */
 
@@ -76883,7 +76883,7 @@ var component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 component.options.__file = "HasError.vue"
@@ -76941,7 +76941,7 @@ var AlertErrorvue_type_template_id_5610eddd_staticRenderFns = []
   }
 });
 // CONCATENATED MODULE: ./src/components/AlertError.vue?vue&type=script&lang=js&
- /* harmony default export */ var components_AlertErrorvue_type_script_lang_js_ = (AlertErrorvue_type_script_lang_js_); 
+ /* harmony default export */ var components_AlertErrorvue_type_script_lang_js_ = (AlertErrorvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/components/AlertError.vue
 
 
@@ -76958,7 +76958,7 @@ var AlertError_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 AlertError_component.options.__file = "AlertError.vue"
@@ -76997,7 +76997,7 @@ var AlertErrorsvue_type_template_id_40d77fd7_staticRenderFns = []
   }
 });
 // CONCATENATED MODULE: ./src/components/AlertErrors.vue?vue&type=script&lang=js&
- /* harmony default export */ var components_AlertErrorsvue_type_script_lang_js_ = (AlertErrorsvue_type_script_lang_js_); 
+ /* harmony default export */ var components_AlertErrorsvue_type_script_lang_js_ = (AlertErrorsvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/components/AlertErrors.vue
 
 
@@ -77014,7 +77014,7 @@ var AlertErrors_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 AlertErrors_component.options.__file = "AlertErrors.vue"
@@ -77051,7 +77051,7 @@ var AlertSuccessvue_type_template_id_fd18e236_staticRenderFns = []
   }
 });
 // CONCATENATED MODULE: ./src/components/AlertSuccess.vue?vue&type=script&lang=js&
- /* harmony default export */ var components_AlertSuccessvue_type_script_lang_js_ = (AlertSuccessvue_type_script_lang_js_); 
+ /* harmony default export */ var components_AlertSuccessvue_type_script_lang_js_ = (AlertSuccessvue_type_script_lang_js_);
 // CONCATENATED MODULE: ./src/components/AlertSuccess.vue
 
 
@@ -77068,7 +77068,7 @@ var AlertSuccess_component = normalizeComponent(
   null,
   null,
   null
-  
+
 )
 
 AlertSuccess_component.options.__file = "AlertSuccess.vue"
@@ -78787,7 +78787,7 @@ function resolveRecordPath (path, record) {
 
 /*  */
 
-// use User Timing api (if present) for more accurate key precision
+// use Customer Timing api (if present) for more accurate key precision
 var Time =
   inBrowser && window.performance && window.performance.now
     ? window.performance
@@ -93738,6 +93738,12 @@ var routes = [{
   component: function component() {
     return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/transactions/TransactionsComponent */ "./resources/js/components/transactions/TransactionsComponent.vue"));
   }
+}, {
+  path: "/payment",
+  name: "payment",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./components/payments/PaymentsComponent */ "./resources/js/components/payments/PaymentsComponent.vue"));
+  }
 }];
 
 /***/ }),
@@ -93882,6 +93888,58 @@ var LoanService = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (new LoanService());
+
+/***/ }),
+
+/***/ "./resources/js/services/payments.service.js":
+/*!***************************************************!*\
+  !*** ./resources/js/services/payments.service.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _auth_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth-header */ "./resources/js/services/auth-header.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var header = {
+  headers: Object(_auth_header__WEBPACK_IMPORTED_MODULE_1__["default"])()
+};
+
+var PaymentsService = /*#__PURE__*/function () {
+  function PaymentsService() {
+    _classCallCheck(this, PaymentsService);
+  }
+
+  _createClass(PaymentsService, [{
+    key: "makePayment",
+    value: function makePayment(loan) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/payments', {
+        amount: loan.amount,
+        time: loan.time,
+        reference: loan.reference
+      }, header);
+    }
+  }, {
+    key: "userPayments",
+    value: function userPayments() {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/payments', header);
+    }
+  }]);
+
+  return PaymentsService;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new PaymentsService());
 
 /***/ }),
 
@@ -94030,6 +94088,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _auth_module__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth.module */ "./resources/js/store/auth.module.js");
 /* harmony import */ var _loan_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loan.module */ "./resources/js/store/loan.module.js");
 /* harmony import */ var _transactions_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./transactions.module */ "./resources/js/store/transactions.module.js");
+/* harmony import */ var _payments_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./payments.module */ "./resources/js/store/payments.module.js");
+
 
 
 
@@ -94040,7 +94100,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   modules: {
     auth: _auth_module__WEBPACK_IMPORTED_MODULE_2__["auth"],
     loan: _loan_module__WEBPACK_IMPORTED_MODULE_3__["loan"],
-    transactions: _transactions_module__WEBPACK_IMPORTED_MODULE_4__["transactions"]
+    transactions: _transactions_module__WEBPACK_IMPORTED_MODULE_4__["transactions"],
+    payments: _payments_module__WEBPACK_IMPORTED_MODULE_5__["payments"]
   }
 }));
 
@@ -94099,6 +94160,49 @@ var loan = {
     },
     updateFailure: function updateFailure(state) {
       state.update = false;
+      state.loan = null;
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/payments.module.js":
+/*!***********************************************!*\
+  !*** ./resources/js/store/payments.module.js ***!
+  \***********************************************/
+/*! exports provided: payments */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "payments", function() { return payments; });
+/* harmony import */ var _services_payments_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/payments.service */ "./resources/js/services/payments.service.js");
+
+var initialState = {};
+var payments = {
+  namespaced: true,
+  state: initialState,
+  actions: {
+    make_payment: function make_payment(_ref, payment) {
+      var commit = _ref.commit;
+      console.log("arrived");
+      return _services_payments_service__WEBPACK_IMPORTED_MODULE_0__["default"].makeTransaction(payment).then(function (payment) {
+        commit('paymentSuccess', payment);
+        return Promise.resolve(payment);
+      }, function (error) {
+        commit('paymentFailure');
+        return Promise.reject(error);
+      });
+    }
+  },
+  mutations: {
+    paymentSuccess: function paymentSuccess(state, loan) {
+      state.transacted = true;
+      state.loan = loan;
+    },
+    paymentFailure: function paymentFailure(state) {
+      state.transacted = false;
       state.loan = null;
     }
   }
