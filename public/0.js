@@ -337,7 +337,7 @@ var render = function() {
               "router-link",
               { staticClass: "nav-link", attrs: { to: "/loans" } },
               [
-                _c("font-awesome-icon", { attrs: { icon: "loans" } }),
+                _c("font-awesome-icon", { attrs: { icon: "home" } }),
                 _vm._v("\n                    Loans\n                ")
               ],
               1
@@ -618,9 +618,11 @@ var render = function() {
                         !_vm.successful
                           ? _c("div", [
                               _c("div", { staticClass: "form-group" }, [
-                                _c("label", { attrs: { for: "type" } }, [
-                                  _vm._v("Transaction")
-                                ]),
+                                _c(
+                                  "label",
+                                  { attrs: { for: "transaction_id" } },
+                                  [_vm._v("Transaction")]
+                                ),
                                 _vm._v(" "),
                                 _c(
                                   "select",
@@ -629,8 +631,8 @@ var render = function() {
                                       {
                                         name: "model",
                                         rawName: "v-model",
-                                        value: _vm.transaction.reference,
-                                        expression: "transaction.reference"
+                                        value: _vm.transaction.transaction_id,
+                                        expression: "transaction.transaction_id"
                                       },
                                       {
                                         name: "validate",
@@ -659,7 +661,7 @@ var render = function() {
                                           })
                                         _vm.$set(
                                           _vm.transaction,
-                                          "reference",
+                                          "transaction_id",
                                           $event.target.multiple
                                             ? $$selectedVal
                                             : $$selectedVal[0]
@@ -707,7 +709,7 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("div", { staticClass: "form-group" }, [
-                                _c("label", { attrs: { for: "type" } }, [
+                                _c("label", { attrs: { for: "loan_id" } }, [
                                   _vm._v("Loan")
                                 ]),
                                 _vm._v(" "),

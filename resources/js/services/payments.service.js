@@ -9,10 +9,10 @@ class PaymentsService {
 
 
     makePayment(loan) {
+        console.log(loan)
         return axios.post('api/payments', {
-            amount: loan.amount,
-            time: loan.time,
-            reference: loan.reference,
+            loan_id: loan.loan_id,
+            transaction_id: loan.transaction_id,
         }, header);
     }
 

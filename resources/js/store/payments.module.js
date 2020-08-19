@@ -1,4 +1,4 @@
-import TransactionsService from '../services/payments.service';
+import PaymentsService from '../services/payments.service';
 
 const initialState = {}
 
@@ -8,7 +8,7 @@ export const payments = {
     actions: {
         make_payment({commit}, payment) {
             console.log("arrived")
-            return TransactionsService.makeTransaction(payment).then(
+            return PaymentsService.makePayment(payment).then(
                 payment => {
                     commit('paymentSuccess', payment);
                     return Promise.resolve(payment);

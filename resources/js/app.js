@@ -1,4 +1,3 @@
-
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -46,7 +45,19 @@ Vue.use(Router);
 //Routes
 import {routes} from './routes';
 import store from './store';
-import {FontAwesomeIcon} from "@fortawesome/vue-fontawesome";
+import { library } from '@fortawesome/fontawesome-svg-core';
+
+import {FontAwesomeIcon} from '@fortawesome/vue-fontawesome';
+import {
+    faHome,
+    faUser,
+    faUserPlus,
+    faSignInAlt,
+    faSignOutAlt
+} from '@fortawesome/free-solid-svg-icons';
+
+library.add(faHome, faUser, faUserPlus, faSignInAlt, faSignOutAlt);
+
 import VeeValidate from 'vee-validate';
 
 Vue.use(VeeValidate);

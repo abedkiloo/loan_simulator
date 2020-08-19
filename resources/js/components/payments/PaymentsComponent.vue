@@ -5,7 +5,7 @@
             <div class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <router-link to="/loans" class="nav-link">
-                        <font-awesome-icon icon="loans"/>
+                        <font-awesome-icon icon="home" />
                         Loans
                     </router-link>
                 </li>
@@ -118,10 +118,10 @@
                                 <div class="modal-body">
                                     <div v-if="!successful">
                                         <div class="form-group">
-                                            <label for="type">Transaction</label>
+                                            <label for="transaction_id">Transaction</label>
                                             <select
                                                 name="transaction_id"
-                                                v-model="transaction.reference"
+                                                v-model="transaction.transaction_id"
                                                 id="transaction_id"
                                                 v-validate="'required'"
                                                 class="form-control">
@@ -138,7 +138,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="type">Loan</label>
+                                            <label for="loan_id">Loan</label>
                                             <select
                                                 name="loan_id"
                                                 v-model="loan.loan_id"

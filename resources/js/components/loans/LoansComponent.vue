@@ -6,7 +6,7 @@
             <div class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <router-link to="/loans" class="nav-link">
-                        <font-awesome-icon icon="loans"/>
+                        <font-awesome-icon icon="home" />
                         Loans
                     </router-link>
                 </li>

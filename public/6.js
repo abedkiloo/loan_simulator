@@ -320,7 +320,7 @@ var render = function() {
               "router-link",
               { staticClass: "nav-link", attrs: { to: "/loans" } },
               [
-                _c("font-awesome-icon", { attrs: { icon: "loans" } }),
+                _c("font-awesome-icon", { attrs: { icon: "home" } }),
                 _vm._v("\n                    Loans\n                ")
               ],
               1
