@@ -121,6 +121,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -138,6 +191,10 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+
     _services_loans_service__WEBPACK_IMPORTED_MODULE_1__["default"].userLoans().then(function (response) {
       _this.loans = response.data;
     }, function (error) {
@@ -145,6 +202,10 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    logOut: function logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    },
     editModalWindow: function editModalWindow(user) {
       this.form.clear();
       this.editMode = true;
@@ -196,6 +257,9 @@ __webpack_require__.r(__webpack_exports__);
     applied: function applied() {
       console.log(this.$store.state.loan.applied);
       return this.$store.state.loan.applied;
+    },
+    currentUser: function currentUser() {
+      return this.$store.state.auth.user;
     }
   },
   created: function created() {}
@@ -219,6 +283,170 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("nav", { staticClass: "navbar navbar-expand navbar-dark bg-dark" }, [
+      _c(
+        "a",
+        {
+          staticClass: "navbar-brand",
+          attrs: { href: "" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+            }
+          }
+        },
+        [_vm._v("bezKoder")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "navbar-nav mr-auto" }, [
+        _c(
+          "li",
+          { staticClass: "nav-item" },
+          [
+            _c(
+              "router-link",
+              { staticClass: "nav-link", attrs: { to: "/loans" } },
+              [
+                _c("font-awesome-icon", { attrs: { icon: "loans" } }),
+                _vm._v("\n                    Loans\n                ")
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          { staticClass: "nav-item" },
+          [
+            _vm.currentUser
+              ? _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/profile" } },
+                  [_vm._v("Profile")]
+                )
+              : _vm._e()
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          { staticClass: "nav-item" },
+          [
+            _vm.currentUser
+              ? _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/transaction" } },
+                  [_vm._v("Transaction")]
+                )
+              : _vm._e()
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          { staticClass: "nav-item" },
+          [
+            _vm.currentUser
+              ? _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/payment" } },
+                  [_vm._v("Payment")]
+                )
+              : _vm._e()
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      !_vm.currentUser
+        ? _c("div", { staticClass: "navbar-nav ml-auto" }, [
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/register" } },
+                  [
+                    _c("font-awesome-icon", { attrs: { icon: "user-plus" } }),
+                    _vm._v("\n                    Sign Up\n                ")
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/login" } },
+                  [
+                    _c("font-awesome-icon", { attrs: { icon: "sign-in-alt" } }),
+                    _vm._v("\n                    Login\n                ")
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentUser
+        ? _c("div", { staticClass: "navbar-nav ml-auto" }, [
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/profile" } },
+                  [
+                    _c("font-awesome-icon", { attrs: { icon: "user" } }),
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.currentUser.username) +
+                        "\n                "
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.logOut($event)
+                    }
+                  }
+                },
+                [
+                  _c("font-awesome-icon", { attrs: { icon: "sign-out-alt" } }),
+                  _vm._v("\n                    LogOut\n                ")
+                ],
+                1
+              )
+            ])
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "row mt-5" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
@@ -387,7 +615,7 @@ var render = function() {
                                   ? _c("div", { staticClass: "alert-danger" }, [
                                       _vm._v(
                                         _vm._s(_vm.errors.first("amount")) +
-                                          "\n                                            "
+                                          "\n                                        "
                                       )
                                     ])
                                   : _vm._e()
@@ -410,7 +638,7 @@ var render = function() {
                             [
                               _vm._v(
                                 _vm._s(_vm.message) +
-                                  "\n                                "
+                                  "\n                            "
                               )
                             ]
                           )
@@ -733,46 +961,18 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Loan; });
-/* harmony import */ var _customer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./customer */ "./resources/js/models/customer.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-
-
+// import Customer from "./customer"
 var Loan = function Loan(amount, customer_id, status, created_at, id) {
   _classCallCheck(this, Loan);
 
-  this.amount = amount;
-  this.Customer = _customer__WEBPACK_IMPORTED_MODULE_0__["default"];
+  this.amount = amount; // this.Customer = Customer;
+
   this.customer_id = customer_id;
   this.status = status;
   this.created_at = created_at;
   this.id = id;
-};
-
-
-
-/***/ }),
-
-/***/ "./resources/js/models/customer.js":
-/*!*****************************************!*\
-  !*** ./resources/js/models/customer.js ***!
-  \*****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Customer; });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var Customer = function Customer(name, email, type, password, id) {
-  _classCallCheck(this, Customer);
-
-  this.name = name;
-  this.type = type;
-  this.email = email;
-  this.id = id;
-  this.password = password;
 };
 
 

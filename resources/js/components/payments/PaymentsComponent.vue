@@ -1,5 +1,57 @@
 <template>
     <div class="container">
+        <nav class="navbar navbar-expand navbar-dark bg-dark">
+            <a href class="navbar-brand" @click.prevent>bezKoder</a>
+            <div class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <router-link to="/loans" class="nav-link">
+                        <font-awesome-icon icon="loans"/>
+                        Loans
+                    </router-link>
+                </li>
+
+                <li class="nav-item">
+                    <router-link v-if="currentUser" to="/profile" class="nav-link">Profile</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link v-if="currentUser" to="/transaction" class="nav-link">Transaction</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link v-if="currentUser" to="/payment" class="nav-link">Payment</router-link>
+                </li>
+            </div>
+
+            <div v-if="!currentUser" class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <router-link to="/register" class="nav-link">
+                        <font-awesome-icon icon="user-plus"/>
+                        Sign Up
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link to="/login" class="nav-link">
+                        <font-awesome-icon icon="sign-in-alt"/>
+                        Login
+                    </router-link>
+                </li>
+            </div>
+
+            <div v-if="currentUser" class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <router-link to="/profile" class="nav-link">
+                        <font-awesome-icon icon="user"/>
+                        {{ currentUser.username }}
+                    </router-link>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href @click.prevent="logOut">
+                        <font-awesome-icon icon="sign-out-alt"/>
+                        LogOut
+                    </a>
+                </li>
+            </div>
+        </nav>
+
         <div class="row mt-5">
             <div class="col-md-12">
                 <div class="card">
@@ -55,14 +107,14 @@
                         <div class="modal-content">
                             <div class="modal-header">
 
-                                <h5  v-show="!editMode" class="modal-title" id="addNewLabel">Add New Transaction</h5>
+                                <h5 v-show="!editMode" class="modal-title" id="addNewLabel">Add New Transaction</h5>
                                 <h5 v-show="editMode" class="modal-title" id="addNewLabel">Update Transaction</h5>
 
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <form name="form" @submit.prevent="editMode ? updateLoan() : handleMakeTransaction()">
+                            <form name="form" @submit.prevent="editMode ? updateLoan() : handlePayment()">
                                 <div class="modal-body">
                                     <div v-if="!successful">
                                         <div class="form-group">
@@ -74,8 +126,10 @@
                                                 v-validate="'required'"
                                                 class="form-control">
                                                 <option value="">Select Transaction</option>
-                                                <option v-for="transaction in transactions" :key="transaction.id" :value="transaction.id">
-                                                    {{ transaction.reference }}</option>
+                                                <option v-for="transaction in transactions" :key="transaction.id"
+                                                        :value="transaction.id">
+                                                    {{ transaction.reference }}
+                                                </option>
                                             </select>
                                             <div
                                                 v-if="submitted && errors.has('type')"
@@ -91,9 +145,10 @@
                                                 id="loan_id"
                                                 v-validate="'required'"
                                                 class="form-control">
-                                                <option value="">Select Transaction</option>
+                                                <option value="">Select Loan</option>
                                                 <option v-for="loan in loans" :key="loan.id" :value="loan.customer_id">
-                                                    {{ loan.amount}}</option>
+                                                    {{ loan.amount }}
+                                                </option>
                                             </select>
                                             <div
                                                 v-if="submitted && errors.has('type')"
@@ -157,6 +212,9 @@ export default {
 
         }
     }, mounted() {
+        if (!this.currentUser) {
+            this.$router.push('/login');
+        }
         PaymentsService.userPayments().then(
             response => {
                 this.payments = response.data;
@@ -192,6 +250,10 @@ export default {
         );
     },
     methods: {
+        logOut() {
+            this.$store.dispatch('auth/logout');
+            this.$router.push('/login');
+        },
         editModalWindow(user) {
             this.form.clear();
             this.editMode = true
@@ -207,7 +269,7 @@ export default {
         },
 
 
-        handleMakeTransaction() {
+        handlePayment() {
             this.message = '';
             this.submitted = true;
             this.$validator.validate().then(isValid => {

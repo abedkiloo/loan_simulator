@@ -156,6 +156,59 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -180,6 +233,10 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   methods: {
+    logOut: function logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    },
     editModalWindow: function editModalWindow(user) {
       this.form.clear();
       this.editMode = true;
@@ -213,6 +270,9 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     applied: function applied() {
       return this.$store.state.transactions.applied;
+    },
+    currentUser: function currentUser() {
+      return this.$store.state.auth.user;
     }
   },
   created: function created() {}
@@ -236,6 +296,170 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
+    _c("nav", { staticClass: "navbar navbar-expand navbar-dark bg-dark" }, [
+      _c(
+        "a",
+        {
+          staticClass: "navbar-brand",
+          attrs: { href: "" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+            }
+          }
+        },
+        [_vm._v("bezKoder")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "navbar-nav mr-auto" }, [
+        _c(
+          "li",
+          { staticClass: "nav-item" },
+          [
+            _c(
+              "router-link",
+              { staticClass: "nav-link", attrs: { to: "/loans" } },
+              [
+                _c("font-awesome-icon", { attrs: { icon: "loans" } }),
+                _vm._v("\n                    Loans\n                ")
+              ],
+              1
+            )
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          { staticClass: "nav-item" },
+          [
+            _vm.currentUser
+              ? _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/profile" } },
+                  [_vm._v("Profile")]
+                )
+              : _vm._e()
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          { staticClass: "nav-item" },
+          [
+            _vm.currentUser
+              ? _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/transaction" } },
+                  [_vm._v("Transaction")]
+                )
+              : _vm._e()
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "li",
+          { staticClass: "nav-item" },
+          [
+            _vm.currentUser
+              ? _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/payment" } },
+                  [_vm._v("Payment")]
+                )
+              : _vm._e()
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      !_vm.currentUser
+        ? _c("div", { staticClass: "navbar-nav ml-auto" }, [
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/register" } },
+                  [
+                    _c("font-awesome-icon", { attrs: { icon: "user-plus" } }),
+                    _vm._v("\n                    Sign Up\n                ")
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/login" } },
+                  [
+                    _c("font-awesome-icon", { attrs: { icon: "sign-in-alt" } }),
+                    _vm._v("\n                    Login\n                ")
+                  ],
+                  1
+                )
+              ],
+              1
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.currentUser
+        ? _c("div", { staticClass: "navbar-nav ml-auto" }, [
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/profile" } },
+                  [
+                    _c("font-awesome-icon", { attrs: { icon: "user" } }),
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(_vm.currentUser.username) +
+                        "\n                "
+                    )
+                  ],
+                  1
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link",
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.logOut($event)
+                    }
+                  }
+                },
+                [
+                  _c("font-awesome-icon", { attrs: { icon: "sign-out-alt" } }),
+                  _vm._v("\n                    LogOut\n                ")
+                ],
+                1
+              )
+            ])
+          ])
+        : _vm._e()
+    ]),
+    _vm._v(" "),
     _c("div", { staticClass: "row mt-5" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
@@ -630,7 +854,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Transacted At")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Created  At")])
+      _c("th", [_vm._v("Created At")])
     ])
   },
   function() {

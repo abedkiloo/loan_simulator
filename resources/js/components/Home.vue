@@ -1,18 +1,23 @@
-
 <template>
     <div class="container">
         <nav class="navbar navbar-expand navbar-dark bg-dark">
             <a href class="navbar-brand" @click.prevent>bezKoder</a>
             <div class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <router-link to="/home" class="nav-link">
+                    <router-link to="/loans" class="nav-link">
                         <font-awesome-icon icon="home"/>
-                        Home
+                        Loan
                     </router-link>
                 </li>
 
                 <li class="nav-item">
-                    <router-link v-if="currentUser" to="/user" class="nav-link">Customer</router-link>
+                    <router-link v-if="currentUser" to="/profile" class="nav-link">Profile</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link v-if="currentUser" to="/transaction" class="nav-link">Transaction</router-link>
+                </li>
+                <li class="nav-item">
+                    <router-link v-if="currentUser" to="/payment" class="nav-link">Payment</router-link>
                 </li>
             </div>
 
