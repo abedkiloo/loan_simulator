@@ -480,7 +480,12 @@ var render = function() {
                                 }
                               }
                             },
-                            [_c("i", { staticClass: "fa fa-edit blue" })]
+                            [
+                              _c("i", { staticClass: "fa fa-edit blue" }),
+                              _vm._v(
+                                "Edit\n                                    "
+                              )
+                            ]
                           )
                         ])
                       ])

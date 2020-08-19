@@ -83,7 +83,7 @@
 
                                     <td>
                                         <a href="#" data-id="user.id" @click="editModalWindow(loan)">
-                                            <i class="fa fa-edit blue"></i>
+                                            <i class="fa fa-edit blue"></i>Edit
                                         </a>
                                         <!--                                        |-->
                                         <!--                                        <a href="#" @click="deleteLoan(loan.id)">-->
