@@ -173,7 +173,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -462,8 +461,6 @@ var render = function() {
                     _vm._v(" "),
                     _vm._l(_vm.loans, function(loan) {
                       return _c("tr", { key: loan.id }, [
-                        _c("td", [_vm._v(_vm._s(loan.id))]),
-                        _vm._v(" "),
                         _c("td", [_vm._v("Kshs . " + _vm._s(loan.amount))]),
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(loan.status))]),

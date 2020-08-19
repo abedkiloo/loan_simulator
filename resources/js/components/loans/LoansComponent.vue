@@ -77,7 +77,6 @@
                                 </tr>
 
                                 <tr v-for="loan in loans" :key="loan.id">
-                                    <td>{{ loan.id }}</td>
                                     <td>Kshs . {{ loan.amount }}</td>
                                     <td>{{ loan.status }}</td>
                                     <td>{{ loan.created_at | formatDate }}</td>
