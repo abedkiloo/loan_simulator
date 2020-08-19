@@ -17,7 +17,7 @@ class TransactionsController extends Controller
      */
     public function index()
     {
-        return Transactions::latest()->get();
+        return Transactions::with(['customer'])->latest()->get();
     }
 
     /**

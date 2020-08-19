@@ -73,6 +73,7 @@
                                     <th>Amount</th>
                                     <th>Transactions Reference</th>
                                     <th>Transacted At</th>
+                                    <th>Transacted By</th>
                                     <th>Created At</th>
                                 </tr>
 
@@ -80,6 +81,7 @@
                                     <td>Kshs .{{ transaction.amount }}</td>
                                     <td> {{ transaction.reference }}</td>
                                     <td>{{ transaction.time| formatDate }}</td>
+                                    <td>{{ transaction.customer.name }}</td>
                                     <td>{{ transaction.created_at | formatDate }}</td>
 
                                     <td>
