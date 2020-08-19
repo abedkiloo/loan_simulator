@@ -84,7 +84,7 @@ class LoansController extends Controller
         $loan = Loans::findOrFail($id);
         $loan->delete();
         return response()->json([
-            'message' => 'Loan deleted successfully'
+            'message' => 'UserLoan deleted successfully'
         ]);
     }
 }

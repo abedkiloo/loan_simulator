@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _models_Loan__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/Loan */ "./resources/js/models/Loan.js");
+/* harmony import */ var _models_userLoan__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/userLoan */ "./resources/js/models/userLoan.js");
 /* harmony import */ var _services_loans_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/loans.service */ "./resources/js/services/loans.service.js");
 //
 //
@@ -179,7 +179,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      loan: new _models_Loan__WEBPACK_IMPORTED_MODULE_0__["default"]('', '', ''),
+      loan: new _models_userLoan__WEBPACK_IMPORTED_MODULE_0__["default"]('', '', ''),
       submitted: false,
       successful: false,
       message: '',
@@ -551,7 +551,7 @@ var render = function() {
                         staticClass: "modal-title",
                         attrs: { id: "addNewLabel" }
                       },
-                      [_vm._v("Update Loan")]
+                      [_vm._v("Update UserLoan")]
                     ),
                     _vm._v(" "),
                     _vm._m(2)
@@ -759,7 +759,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("button", { staticClass: "btn btn-primary btn-block" }, [
-        _vm._v("Apply Loan")
+        _vm._v("Apply UserLoan")
       ])
     ])
   }
@@ -951,21 +951,21 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/models/Loan.js":
-/*!*************************************!*\
-  !*** ./resources/js/models/Loan.js ***!
-  \*************************************/
+/***/ "./resources/js/models/userLoan.js":
+/*!*****************************************!*\
+  !*** ./resources/js/models/userLoan.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Loan; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UserLoan; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 // import Customer from "./customer"
-var Loan = function Loan(amount, customer_id, status, created_at, id) {
-  _classCallCheck(this, Loan);
+var UserLoan = function UserLoan(amount, customer_id, status, created_at, id) {
+  _classCallCheck(this, UserLoan);
 
   this.amount = amount; // this.Customer = Customer;
 

@@ -6,7 +6,7 @@
                 <li class="nav-item">
                     <router-link to="/loans" class="nav-link">
                         <font-awesome-icon icon="home"/>
-                        Loan
+                        UserLoan
                     </router-link>
                 </li>
 

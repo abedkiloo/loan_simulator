@@ -109,7 +109,7 @@
                             <div class="modal-header">
 
                                 <h5 v-show="!editMode" class="modal-title" id="addNewLabel">Add New Loans</h5>
-                                <h5 v-show="editMode" class="modal-title" id="addNewLabel">Update Loan</h5>
+                                <h5 v-show="editMode" class="modal-title" id="addNewLabel">Update UserLoan</h5>
 
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
@@ -136,7 +136,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <button class="btn btn-primary btn-block">Apply Loan</button>
+                                            <button class="btn btn-primary btn-block">Apply UserLoan</button>
                                         </div>
                                     </div>
                                 </div>
@@ -162,13 +162,13 @@
 </template>
 
 <script>
-import Loan from "../../models/Loan";
+import UserLoan from "../../models/userLoan";
 import LoanService from "../../services/loans.service";
 
 export default {
     data() {
         return {
-            loan: new Loan('', '', ''),
+            loan: new UserLoan('', '', ''),
             submitted: false,
             successful: false,
             message: '',

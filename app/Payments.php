@@ -12,11 +12,11 @@ class Payments extends Model
 
     public function transaction()
     {
-        return $this->belongsTo(User::class, 'transaction_id', 'id');
+        return $this->belongsTo(Transactions::class, 'transaction_id', 'id');
     }
 
     public function loan()
     {
-        return $this->belongsTo(User::class, 'loan_id', 'id');
+        return $this->belongsTo(Loans::class, 'loan_id', 'id');
     }
 }

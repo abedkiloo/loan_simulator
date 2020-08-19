@@ -10,11 +10,12 @@
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _models_transaction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/transaction */ "./resources/js/models/transaction.js");
-/* harmony import */ var _models_loan__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/loan */ "./resources/js/models/loan.js");
+/* harmony import */ var _models_userLoan__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/userLoan */ "./resources/js/models/userLoan.js");
 /* harmony import */ var _models_payment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/payment */ "./resources/js/models/payment.js");
 /* harmony import */ var _services_payments_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/payments.service */ "./resources/js/services/payments.service.js");
 /* harmony import */ var _services_loans_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/loans.service */ "./resources/js/services/loans.service.js");
 /* harmony import */ var _services_transactions_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/transactions.service */ "./resources/js/services/transactions.service.js");
+//
 //
 //
 //
@@ -214,7 +215,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       transaction: new _models_transaction__WEBPACK_IMPORTED_MODULE_0__["default"]('', '', ''),
-      loan: new _models_loan__WEBPACK_IMPORTED_MODULE_1__["default"]('', '', ''),
+      loan: new _models_userLoan__WEBPACK_IMPORTED_MODULE_1__["default"]('', '', ''),
       payment: new _models_payment__WEBPACK_IMPORTED_MODULE_2__["default"]('', '', ''),
       submitted: false,
       successful: false,
@@ -480,13 +481,7 @@ var render = function() {
     _c("div", { staticClass: "row mt-5" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "card" }, [
-          _c("div", { staticClass: "card-header" }, [
-            _c("h3", { staticClass: "card-title" }, [_vm._v("Payments ")]),
-            _vm._v(" "),
-            _vm.currentUser.type == "user"
-              ? _c("div", { staticClass: "card-tools" }, [_vm._m(0)])
-              : _vm._e()
-          ]),
+          _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "card-body table-responsive p-0" }, [
             _c("div", { staticClass: "card-body table-responsive p-0" }, [
@@ -710,7 +705,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "form-group" }, [
                                 _c("label", { attrs: { for: "loan_id" } }, [
-                                  _vm._v("Loan")
+                                  _vm._v("UserLoan")
                                 ]),
                                 _vm._v(" "),
                                 _c(
@@ -757,7 +752,7 @@ var render = function() {
                                   },
                                   [
                                     _c("option", { attrs: { value: "" } }, [
-                                      _vm._v("Select Loan")
+                                      _vm._v("Select UserLoan")
                                     ]),
                                     _vm._v(" "),
                                     _vm._l(_vm.loans, function(loan) {
@@ -872,14 +867,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-success",
-        attrs: { "data-toggle": "modal", "data-target": "#addNew" }
-      },
-      [_vm._v("Add New "), _c("i", { staticClass: "fas fa-user-plus fa-fw" })]
-    )
+    return _c("div", { staticClass: "card-header" }, [
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Payments ")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-tools" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success",
+            attrs: { "data-toggle": "modal", "data-target": "#addNew" }
+          },
+          [
+            _vm._v("Add New "),
+            _c("i", { staticClass: "fas fa-user-plus fa-fw" })
+          ]
+        )
+      ])
+    ])
   },
   function() {
     var _vm = this
@@ -890,7 +894,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("th", [_vm._v("Reference")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Loan Amount")]),
+      _c("th", [_vm._v("UserLoan Amount")]),
       _vm._v(" "),
       _c("th", [_vm._v("Created At")])
     ])
@@ -1110,34 +1114,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/models/loan.js":
-/*!*************************************!*\
-  !*** ./resources/js/models/loan.js ***!
-  \*************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Loan; });
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-// import Customer from "./customer"
-var Loan = function Loan(amount, customer_id, status, created_at, id) {
-  _classCallCheck(this, Loan);
-
-  this.amount = amount; // this.Customer = Customer;
-
-  this.customer_id = customer_id;
-  this.status = status;
-  this.created_at = created_at;
-  this.id = id;
-};
-
-
-
-/***/ }),
-
 /***/ "./resources/js/models/payment.js":
 /*!****************************************!*\
   !*** ./resources/js/models/payment.js ***!
@@ -1184,6 +1160,34 @@ var Transaction = function Transaction(amount, customer_id, reference, time, cre
   this.reference = reference;
   this.created_at = created_at;
   this.time = time;
+};
+
+
+
+/***/ }),
+
+/***/ "./resources/js/models/userLoan.js":
+/*!*****************************************!*\
+  !*** ./resources/js/models/userLoan.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UserLoan; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// import Customer from "./customer"
+var UserLoan = function UserLoan(amount, customer_id, status, created_at, id) {
+  _classCallCheck(this, UserLoan);
+
+  this.amount = amount; // this.Customer = Customer;
+
+  this.customer_id = customer_id;
+  this.status = status;
+  this.created_at = created_at;
+  this.id = id;
 };
 
 

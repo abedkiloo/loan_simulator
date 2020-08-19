@@ -5,7 +5,7 @@
             <div class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <router-link to="/loans" class="nav-link">
-                        <font-awesome-icon icon="home" />
+                        <font-awesome-icon icon="home"/>
                         Loans
                     </router-link>
                 </li>
@@ -57,8 +57,9 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Payments </h3>
-
-                        <div v-if="currentUser.type=='user'" class="card-tools">
+                        <!--                        todo check user type-->
+                        <!--                        v-if="currentUser.type=='user'"-->
+                        <div class="card-tools">
                             <button class="btn btn-success" data-toggle="modal" data-target="#addNew">Add New <i
                                 class="fas fa-user-plus fa-fw"></i></button>
                         </div>
@@ -72,7 +73,7 @@
                                 <tr>
                                     <th>Amount</th>
                                     <th>Reference</th>
-                                    <th>Loan Amount</th>
+                                    <th>UserLoan Amount</th>
                                     <th>Created At</th>
                                 </tr>
                                 <tr v-for="payment in payments" :key="payment.id">
@@ -138,14 +139,14 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="loan_id">Loan</label>
+                                            <label for="loan_id">UserLoan</label>
                                             <select
                                                 name="loan_id"
                                                 v-model="payment.loan_id"
                                                 id="loan_id"
                                                 v-validate="'required'"
                                                 class="form-control">
-                                                <option value="">Select Loan</option>
+                                                <option value="">Select UserLoan</option>
                                                 <option v-for="loan in loans" :key="loan.id" :value="loan.customer_id">
                                                     {{ loan.amount }}
                                                 </option>
@@ -189,7 +190,7 @@
 
 <script>
 import Transaction from "../../models/transaction";
-import Loan from "../../models/loan";
+import UserLoan from "../../models/userLoan";
 import Payment from "../../models/payment";
 import PaymentsService from "../../services/payments.service";
 import LoanService from "../../services/loans.service";
@@ -199,7 +200,7 @@ export default {
     data() {
         return {
             transaction: new Transaction('', '', ''),
-            loan: new Loan('', '', ''),
+            loan: new UserLoan('', '', ''),
             payment: new Payment('', '', ''),
             submitted: false,
             successful: false,

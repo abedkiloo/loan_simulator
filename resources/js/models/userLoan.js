@@ -1,6 +1,6 @@
 // import Customer from "./customer"
 
-export default class Loan {
+export default class UserLoan {
     constructor(amount, customer_id, status, created_at, id) {
         this.amount = amount;
         // this.Customer = Customer;

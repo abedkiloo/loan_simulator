@@ -100725,7 +100725,7 @@ var routes = [{
   path: "/",
   name: "home",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue"));
   }
 }, {
   path: "/login",
@@ -100743,7 +100743,7 @@ var routes = [{
   path: "/profile",
   name: "profile",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/customer/UserProfile */ "./resources/js/components/customer/UserProfile.vue"));
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/customer/UserProfile */ "./resources/js/components/customer/UserProfile.vue"));
   }
 }, {
   path: "/customer",
@@ -100761,7 +100761,7 @@ var routes = [{
   path: "/transaction",
   name: "transaction",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/transactions/TransactionsComponent */ "./resources/js/components/transactions/TransactionsComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/transactions/TransactionsComponent */ "./resources/js/components/transactions/TransactionsComponent.vue"));
   }
 }, {
   path: "/payment",
