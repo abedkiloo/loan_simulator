@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <nav class="navbar navbar-expand navbar-dark bg-dark">
-            <a href class="navbar-brand" @click.prevent>bezKoder</a>
+            <a href class="navbar-brand" @click.prevent>$Dollar-Loaner</a>
             <div class="navbar-nav mr-auto">
                 <li class="nav-item">
                     <router-link to="/loans" class="nav-link">

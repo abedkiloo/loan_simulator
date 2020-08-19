@@ -326,7 +326,7 @@ var render = function() {
             }
           }
         },
-        [_vm._v("bezKoder")]
+        [_vm._v("$Dollar-Loaner")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "navbar-nav mr-auto" }, [
