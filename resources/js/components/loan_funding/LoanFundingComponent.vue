@@ -20,6 +20,9 @@
                 <li class="nav-item">
                     <router-link v-if="currentUser" to="/payment" class="nav-link">Payment</router-link>
                 </li>
+                <li class="nav-item">
+                    <router-link v-if="currentUser" to="/loan-funding" class="nav-link">Loan Funding</router-link>
+                </li>
             </div>
 
             <div v-if="!currentUser" class="navbar-nav ml-auto">
@@ -57,7 +60,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Transactions </h3>
+                        <h3 class="card-title">Loan Funding </h3>
 
                         <div class="card-tools">
                             <button class="btn btn-success" data-toggle="modal" data-target="#addNew">Add New <i
@@ -71,16 +74,16 @@
                                 <tbody>
                                 <tr>
                                     <th>Amount</th>
-                                    <th>Refetransactionsrence</th>
-                                    <th>Transacted At</th>
+                                    <th>Loan Amount</th>
+                                    <th>Lender</th>
                                     <th>Created At</th>
                                 </tr>
 
-                                <tr v-for="transaction in transactions" :key="transaction.id">
-                                    <td>Kshs .{{ transaction.amount }}</td>
-                                    <td> {{ transaction.reference }}</td>
-                                    <td>{{ transaction.time| formatDate }}</td>
-                                    <td>{{ transaction.created_at | formatDate }}</td>
+                                <tr v-for="loan_fund in allLoanFunding" :key="loan_fund.id">
+                                    <td>Kshs .{{ loan_fund.amount }}</td>
+                                    <td> {{ loan_fund.loan.amount }}</td>
+                                    <td>{{ loan_fund.lender.name }}</td>
+                                    <td>{{ loan_fund.created_at | formatDate }}</td>
 
                                     <td>
                                         <a href="#" data-id="user.id" @click="editModalWindow(transaction)">
@@ -108,21 +111,21 @@
                         <div class="modal-content">
                             <div class="modal-header">
 
-                                <h5 v-show="!editMode" class="modal-title" id="addNewLabel">Add New Transaction</h5>
-                                <h5 v-show="editMode" class="modal-title" id="addNewLabel">Update Transaction</h5>
+                                <h5 v-show="!editMode" class="modal-title" id="addNewLabel">Add New Loan Funding</h5>
+                                <h5 v-show="editMode" class="modal-title" id="addNewLabel">Update Loan Funding</h5>
 
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
 
-                            <form name="form" @submit.prevent="editMode ? updatePayment() : handleMakeTransaction()">
+                            <form name="form" @submit.prevent="editMode ? updatePayment() : handleLoanFunding()">
                                 <div class="modal-body">
                                     <div v-if="!successful">
                                         <div class="form-group">
                                             <label for="amount">Amount</label>
                                             <input
-                                                v-model="transaction.amount"
+                                                v-model="loanFunding.amount"
                                                 v-validate="'required'"
                                                 type="number"
                                                 class="form-control"
@@ -135,37 +138,44 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="reference">Reference</label>
-                                            <input
-                                                v-model="transaction.reference"
+                                            <label for="lender_id">Lender</label>
+                                            <select
+                                                name="lender_id"
+                                                v-model="loanFunding.lender_id"
+                                                id="lender_id"
                                                 v-validate="'required'"
-                                                type="text"
-                                                class="form-control"
-                                                name="reference"
-                                            />
+                                                class="form-control">
+                                                <option value="">Select Loan</option>
+                                                <option v-for="user in users" :key="user.id" :value="user.id">
+                                                    {{ user.name }}
+                                                </option>
+                                            </select>
                                             <div
-                                                v-if="submitted && errors.has('reference')"
+                                                v-if="submitted && errors.has('lender_id')"
                                                 class="alert-danger"
-                                            >{{ errors.first('reference') }}
+                                            >{{ errors.first('lender_id') }}
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <label for="time">Time</label>
-                                            <input
-                                                v-model="transaction.time"
+                                            <label for="lender_id">Loan</label>
+                                            <select
+                                                name="loan_id"
+                                                v-model="loanFunding.loan_id"
+                                                id="loan_id"
                                                 v-validate="'required'"
-                                                type="date"
-                                                format="yyyy-MM-dd HH:mm"
-
-                                                class="form-control"
-                                                name="time"
-                                            />
+                                                class="form-control">
+                                                <option value="">Select Loan</option>
+                                                <option v-for="loan in loans" :key="loan.id" :value="loan.id">
+                                                    {{ loan.amount }}({{ loan.customer.name }})
+                                                </option>
+                                            </select>
                                             <div
-                                                v-if="submitted && errors.has('time')"
+                                                v-if="submitted && errors.has('loan_id')"
                                                 class="alert-danger"
-                                            >{{ errors.first('time') }}
+                                            >{{ errors.first('loan_id') }}
                                             </div>
                                         </div>
+
 
                                         <div class="form-group">
                                             <button class="btn btn-primary btn-block">Submit Payment</button>
@@ -197,25 +207,51 @@
 </template>
 
 <script>
-import Transaction from "../../models/transaction";
-import TransactionsService from "../../services/transactions.service";
+import LoanFunding from "../../models/loanFunding";
+import LoanFundingService from "../../services/loanFunding.service";
+import UserService from "../../services/user.service";
+import LoanService from "../../services/loans.service";
 
 export default {
     data() {
         return {
-            transaction: new Transaction('', '', ''),
+            loanFunding: new LoanFunding('', '', ''),
             submitted: false,
             successful: false,
             message: '',
-            transactions: {},
+            allLoanFunding: {},
+            loans: {},
+            users: {},
             form: new Form({}),
             editMode: false,
 
         }
     }, mounted() {
-        TransactionsService.userTransactions().then(
+        UserService.getAll().then(
             response => {
-                this.transactions = response.data;
+                this.users = response.data;
+            },
+            error => {
+                this.content =
+                    (error.response && error.response.data) ||
+                    error.message ||
+                    error.toString();
+            }
+        );
+        LoanFundingService.allLoanFunding().then(
+            response => {
+                this.allLoanFunding = response.data;
+            },
+            error => {
+                this.content =
+                    (error.response && error.response.data) ||
+                    error.message ||
+                    error.toString();
+            }
+        );
+        LoanService.userLoans().then(
+            response => {
+                this.loans = response.data;
             },
             error => {
                 this.content =
@@ -245,12 +281,12 @@ export default {
         },
 
 
-        handleMakeTransaction() {
+        handleLoanFunding() {
             this.message = '';
             this.submitted = true;
             this.$validator.validate().then(isValid => {
                 if (isValid) {
-                    this.$store.dispatch('transactions/make_transaction', this.transaction).then(
+                    this.$store.dispatch('loan_funding/submit_loan_funding', this.loanFunding).then(
                         data => {
                             this.message = data.message;
                             this.successful = true;
@@ -270,8 +306,7 @@ export default {
     },
     computed: {
         applied() {
-
-            return this.$store.state.transactions.applied;
+            return this.$store.state.transactions.transacted;
         }, currentUser() {
             return this.$store.state.auth.user;
         },

@@ -205,6 +205,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -386,6 +388,20 @@ var render = function() {
                   "router-link",
                   { staticClass: "nav-link", attrs: { to: "/payment" } },
                   [_vm._v("Payment")]
+                )
+              : _vm._e()
+          ],
+          1
+        ),
+        _c(
+          "li",
+          { staticClass: "nav-item" },
+          [
+            _vm.currentUser
+              ? _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/loan-funding" } },
+                  [_vm._v("Loan Funding")]
                 )
               : _vm._e()
           ],

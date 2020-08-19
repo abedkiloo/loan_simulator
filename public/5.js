@@ -1,50 +1,16 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([[5],{
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/transactions/TransactionsComponent.vue?vue&type=script&lang=js&":
-/*!*********************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/transactions/TransactionsComponent.vue?vue&type=script&lang=js& ***!
-  \*********************************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loans/LoansComponent.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/loans/LoansComponent.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _models_transaction__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/transaction */ "./resources/js/models/transaction.js");
-/* harmony import */ var _services_transactions_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/transactions.service */ "./resources/js/services/transactions.service.js");
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var _models_userLoan__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../models/userLoan */ "./resources/js/models/userLoan.js");
+/* harmony import */ var _services_loans_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../services/loans.service */ "./resources/js/services/loans.service.js");
 //
 //
 //
@@ -216,11 +182,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      transaction: new _models_transaction__WEBPACK_IMPORTED_MODULE_0__["default"]('', '', ''),
+      loan: new _models_userLoan__WEBPACK_IMPORTED_MODULE_0__["default"]('', '', ''),
       submitted: false,
       successful: false,
       message: '',
-      transactions: {},
+      loans: {},
       form: new Form({}),
       editMode: false
     };
@@ -228,8 +194,12 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this = this;
 
-    _services_transactions_service__WEBPACK_IMPORTED_MODULE_1__["default"].userTransactions().then(function (response) {
-      _this.transactions = response.data;
+    if (!this.currentUser) {
+      this.$router.push('/login');
+    }
+
+    _services_loans_service__WEBPACK_IMPORTED_MODULE_1__["default"].userLoans().then(function (response) {
+      _this.loans = response.data;
     }, function (error) {
       _this.content = error.response && error.response.data || error.message || error.toString();
     });
@@ -251,14 +221,14 @@ __webpack_require__.r(__webpack_exports__);
       this.form.reset();
       $('#addNew').modal('show');
     },
-    handleMakeTransaction: function handleMakeTransaction() {
+    handleApplyLoan: function handleApplyLoan() {
       var _this2 = this;
 
       this.message = '';
       this.submitted = true;
       this.$validator.validate().then(function (isValid) {
         if (isValid) {
-          _this2.$store.dispatch('transactions/make_transaction', _this2.transaction).then(function (data) {
+          _this2.$store.dispatch('loan/apply_loan', _this2.loan).then(function (data) {
             _this2.message = data.message;
             _this2.successful = true;
           }, function (error) {
@@ -267,11 +237,29 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
+    },
+    updateLoan: function updateLoan() {
+      var _this3 = this;
+
+      this.message = '';
+      this.submitted = true;
+      this.$validator.validate().then(function (isValid) {
+        if (isValid) {
+          _this3.$store.dispatch('loan/update_loan', _this3.loan).then(function (data) {
+            _this3.message = data.message;
+            _this3.successful = true;
+          }, function (error) {
+            _this3.message = error.response && error.response.data || error.message || error.toString();
+            _this3.successful = false;
+          });
+        }
+      });
     }
   },
   computed: {
     applied: function applied() {
-      return this.$store.state.transactions.applied;
+      console.log(this.$store.state.loan.applied);
+      return this.$store.state.loan.applied;
     },
     currentUser: function currentUser() {
       return this.$store.state.auth.user;
@@ -282,10 +270,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/transactions/TransactionsComponent.vue?vue&type=template&id=71bb0259&":
-/*!*************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/transactions/TransactionsComponent.vue?vue&type=template&id=71bb0259& ***!
-  \*************************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loans/LoansComponent.vue?vue&type=template&id=1ce0aeb1&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/loans/LoansComponent.vue?vue&type=template&id=1ce0aeb1& ***!
+  \***********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -370,6 +358,20 @@ var render = function() {
                   "router-link",
                   { staticClass: "nav-link", attrs: { to: "/payment" } },
                   [_vm._v("Payment")]
+                )
+              : _vm._e()
+          ],
+          1
+        ),
+        _c(
+          "li",
+          { staticClass: "nav-item" },
+          [
+            _vm.currentUser
+              ? _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "/loan-funding" } },
+                  [_vm._v("Loan Funding")]
                 )
               : _vm._e()
           ],
@@ -475,24 +477,16 @@ var render = function() {
                   [
                     _vm._m(1),
                     _vm._v(" "),
-                    _vm._l(_vm.transactions, function(transaction) {
-                      return _c("tr", { key: transaction.id }, [
-                        _c("td", [
-                          _vm._v("Kshs ." + _vm._s(transaction.amount))
-                        ]),
+                    _vm._l(_vm.loans, function(loan) {
+                      return _c("tr", { key: loan.id }, [
+                        _c("td", [_vm._v("Kshs . " + _vm._s(loan.amount))]),
                         _vm._v(" "),
-                        _c("td", [_vm._v(" " + _vm._s(transaction.reference))]),
+                        _c("td", [_vm._v(_vm._s(loan.status))]),
                         _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(_vm._f("formatDate")(transaction.time)))
-                        ]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(transaction.customer.name))]),
+                        _c("td", [_vm._v(_vm._s(loan.customer.name))]),
                         _vm._v(" "),
                         _c("td", [
-                          _vm._v(
-                            _vm._s(_vm._f("formatDate")(transaction.created_at))
-                          )
+                          _vm._v(_vm._s(_vm._f("formatDate")(loan.created_at)))
                         ]),
                         _vm._v(" "),
                         _c("td", [
@@ -502,7 +496,7 @@ var render = function() {
                               attrs: { href: "#", "data-id": "user.id" },
                               on: {
                                 click: function($event) {
-                                  return _vm.editModalWindow(transaction)
+                                  return _vm.editModalWindow(loan)
                                 }
                               }
                             },
@@ -562,7 +556,7 @@ var render = function() {
                         staticClass: "modal-title",
                         attrs: { id: "addNewLabel" }
                       },
-                      [_vm._v("Add New Transaction")]
+                      [_vm._v("Add New Loans")]
                     ),
                     _vm._v(" "),
                     _c(
@@ -579,7 +573,7 @@ var render = function() {
                         staticClass: "modal-title",
                         attrs: { id: "addNewLabel" }
                       },
-                      [_vm._v("Update Transaction")]
+                      [_vm._v("Update UserLoan")]
                     ),
                     _vm._v(" "),
                     _vm._m(2)
@@ -593,8 +587,8 @@ var render = function() {
                         submit: function($event) {
                           $event.preventDefault()
                           _vm.editMode
-                            ? _vm.updatePayment()
-                            : _vm.handleMakeTransaction()
+                            ? _vm.updateLoan()
+                            : _vm.handleApplyLoan()
                         }
                       }
                     },
@@ -612,8 +606,8 @@ var render = function() {
                                     {
                                       name: "model",
                                       rawName: "v-model",
-                                      value: _vm.transaction.amount,
-                                      expression: "transaction.amount"
+                                      value: _vm.loan.amount,
+                                      expression: "loan.amount"
                                     },
                                     {
                                       name: "validate",
@@ -623,15 +617,15 @@ var render = function() {
                                     }
                                   ],
                                   staticClass: "form-control",
-                                  attrs: { type: "number", name: "amount" },
-                                  domProps: { value: _vm.transaction.amount },
+                                  attrs: { type: "text", name: "amount" },
+                                  domProps: { value: _vm.loan.amount },
                                   on: {
                                     input: function($event) {
                                       if ($event.target.composing) {
                                         return
                                       }
                                       _vm.$set(
-                                        _vm.transaction,
+                                        _vm.loan,
                                         "amount",
                                         $event.target.value
                                       )
@@ -649,110 +643,28 @@ var render = function() {
                                   : _vm._e()
                               ]),
                               _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c("label", { attrs: { for: "reference" } }, [
-                                  _vm._v("Reference")
-                                ]),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.transaction.reference,
-                                      expression: "transaction.reference"
-                                    },
-                                    {
-                                      name: "validate",
-                                      rawName: "v-validate",
-                                      value: "required",
-                                      expression: "'required'"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: { type: "text", name: "reference" },
-                                  domProps: {
-                                    value: _vm.transaction.reference
-                                  },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.transaction,
-                                        "reference",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _vm.submitted && _vm.errors.has("reference")
-                                  ? _c("div", { staticClass: "alert-danger" }, [
-                                      _vm._v(
-                                        _vm._s(_vm.errors.first("reference")) +
-                                          "\n                                        "
-                                      )
-                                    ])
-                                  : _vm._e()
-                              ]),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "form-group" }, [
-                                _c("label", { attrs: { for: "time" } }, [
-                                  _vm._v("Time")
-                                ]),
-                                _vm._v(" "),
-                                _c("input", {
-                                  directives: [
-                                    {
-                                      name: "model",
-                                      rawName: "v-model",
-                                      value: _vm.transaction.time,
-                                      expression: "transaction.time"
-                                    },
-                                    {
-                                      name: "validate",
-                                      rawName: "v-validate",
-                                      value: "required",
-                                      expression: "'required'"
-                                    }
-                                  ],
-                                  staticClass: "form-control",
-                                  attrs: {
-                                    type: "date",
-                                    format: "yyyy-MM-dd HH:mm",
-                                    name: "time"
-                                  },
-                                  domProps: { value: _vm.transaction.time },
-                                  on: {
-                                    input: function($event) {
-                                      if ($event.target.composing) {
-                                        return
-                                      }
-                                      _vm.$set(
-                                        _vm.transaction,
-                                        "time",
-                                        $event.target.value
-                                      )
-                                    }
-                                  }
-                                }),
-                                _vm._v(" "),
-                                _vm.submitted && _vm.errors.has("time")
-                                  ? _c("div", { staticClass: "alert-danger" }, [
-                                      _vm._v(
-                                        _vm._s(_vm.errors.first("time")) +
-                                          "\n                                        "
-                                      )
-                                    ])
-                                  : _vm._e()
-                              ]),
-                              _vm._v(" "),
                               _vm._m(3)
                             ])
                           : _vm._e()
                       ]),
+                      _vm._v(" "),
+                      _vm.message
+                        ? _c(
+                            "div",
+                            {
+                              staticClass: "alert",
+                              class: _vm.successful
+                                ? "alert-success"
+                                : "alert-danger"
+                            },
+                            [
+                              _vm._v(
+                                _vm._s(_vm.message) +
+                                  "\n                            "
+                              )
+                            ]
+                          )
+                        : _vm._e(),
                       _vm._v(" "),
                       _c("div", { staticClass: "modal-footer" }, [
                         _c(
@@ -799,24 +711,7 @@ var render = function() {
                         )
                       ])
                     ]
-                  ),
-                  _vm._v(" "),
-                  _vm.message
-                    ? _c(
-                        "div",
-                        {
-                          staticClass: "alert",
-                          class: _vm.successful
-                            ? "alert-success"
-                            : "alert-danger"
-                        },
-                        [
-                          _vm._v(
-                            _vm._s(_vm.message) + "\n                        "
-                          )
-                        ]
-                      )
-                    : _vm._e()
+                  )
                 ])
               ]
             )
@@ -832,7 +727,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _c("h3", { staticClass: "card-title" }, [_vm._v("Transactions ")]),
+      _c("h3", { staticClass: "card-title" }, [_vm._v("Loans ")]),
       _vm._v(" "),
       _c("div", { staticClass: "card-tools" }, [
         _c(
@@ -856,13 +751,13 @@ var staticRenderFns = [
     return _c("tr", [
       _c("th", [_vm._v("Amount")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Transactions Reference")]),
+      _c("th", [_vm._v("Status")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Transacted At")]),
+      _c("th", [_vm._v("Customer")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Transacted By")]),
+      _c("th", [_vm._v("Borrowed At")]),
       _vm._v(" "),
-      _c("th", [_vm._v("Created At")])
+      _c("th", [_vm._v("Modify")])
     ])
   },
   function() {
@@ -888,7 +783,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
       _c("button", { staticClass: "btn btn-primary btn-block" }, [
-        _vm._v("Submit Payment")
+        _vm._v("Apply UserLoan")
       ])
     ])
   }
@@ -1011,17 +906,17 @@ function normalizeComponent (
 
 /***/ }),
 
-/***/ "./resources/js/components/transactions/TransactionsComponent.vue":
-/*!************************************************************************!*\
-  !*** ./resources/js/components/transactions/TransactionsComponent.vue ***!
-  \************************************************************************/
+/***/ "./resources/js/components/loans/LoansComponent.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/loans/LoansComponent.vue ***!
+  \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _TransactionsComponent_vue_vue_type_template_id_71bb0259___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TransactionsComponent.vue?vue&type=template&id=71bb0259& */ "./resources/js/components/transactions/TransactionsComponent.vue?vue&type=template&id=71bb0259&");
-/* harmony import */ var _TransactionsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TransactionsComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/transactions/TransactionsComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _LoansComponent_vue_vue_type_template_id_1ce0aeb1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LoansComponent.vue?vue&type=template&id=1ce0aeb1& */ "./resources/js/components/loans/LoansComponent.vue?vue&type=template&id=1ce0aeb1&");
+/* harmony import */ var _LoansComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LoansComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/loans/LoansComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -1031,9 +926,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _TransactionsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _TransactionsComponent_vue_vue_type_template_id_71bb0259___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _TransactionsComponent_vue_vue_type_template_id_71bb0259___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _LoansComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LoansComponent_vue_vue_type_template_id_1ce0aeb1___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LoansComponent_vue_vue_type_template_id_1ce0aeb1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -1043,64 +938,65 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/transactions/TransactionsComponent.vue"
+component.options.__file = "resources/js/components/loans/LoansComponent.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/transactions/TransactionsComponent.vue?vue&type=script&lang=js&":
-/*!*************************************************************************************************!*\
-  !*** ./resources/js/components/transactions/TransactionsComponent.vue?vue&type=script&lang=js& ***!
-  \*************************************************************************************************/
+/***/ "./resources/js/components/loans/LoansComponent.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/loans/LoansComponent.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./TransactionsComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/transactions/TransactionsComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LoansComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./LoansComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loans/LoansComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LoansComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/transactions/TransactionsComponent.vue?vue&type=template&id=71bb0259&":
-/*!*******************************************************************************************************!*\
-  !*** ./resources/js/components/transactions/TransactionsComponent.vue?vue&type=template&id=71bb0259& ***!
-  \*******************************************************************************************************/
+/***/ "./resources/js/components/loans/LoansComponent.vue?vue&type=template&id=1ce0aeb1&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/loans/LoansComponent.vue?vue&type=template&id=1ce0aeb1& ***!
+  \*****************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_template_id_71bb0259___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./TransactionsComponent.vue?vue&type=template&id=71bb0259& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/transactions/TransactionsComponent.vue?vue&type=template&id=71bb0259&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_template_id_71bb0259___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoansComponent_vue_vue_type_template_id_1ce0aeb1___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./LoansComponent.vue?vue&type=template&id=1ce0aeb1& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/loans/LoansComponent.vue?vue&type=template&id=1ce0aeb1&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoansComponent_vue_vue_type_template_id_1ce0aeb1___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TransactionsComponent_vue_vue_type_template_id_71bb0259___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LoansComponent_vue_vue_type_template_id_1ce0aeb1___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
 /***/ }),
 
-/***/ "./resources/js/models/transaction.js":
-/*!********************************************!*\
-  !*** ./resources/js/models/transaction.js ***!
-  \********************************************/
+/***/ "./resources/js/models/userLoan.js":
+/*!*****************************************!*\
+  !*** ./resources/js/models/userLoan.js ***!
+  \*****************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Transaction; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return UserLoan; });
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Transaction = function Transaction(amount, customer_id, reference, time, created_at, id) {
-  _classCallCheck(this, Transaction);
+// import Customer from "./customer"
+var UserLoan = function UserLoan(amount, customer_id, status, created_at, id) {
+  _classCallCheck(this, UserLoan);
 
-  this.amount = amount;
-  this.id = id;
+  this.amount = amount; // this.Customer = Customer;
+
   this.customer_id = customer_id;
-  this.reference = reference;
+  this.status = status;
   this.created_at = created_at;
-  this.time = time;
+  this.id = id;
 };
 
 

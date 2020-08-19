@@ -34,6 +34,7 @@ Route::middleware('auth:api')->group(function () {
             'loans' => 'Api\LoansController',
             'transactions' => 'Api\TransactionsController',
             'payments' => 'Api\PaymentsController',
+            'loan_funding' => 'Api\LoanFundingController',
         ]
     );
 });

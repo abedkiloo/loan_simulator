@@ -13,7 +13,7 @@ class CreateLoanFundingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('loan_fundings', function (Blueprint $table) {
+        Schema::create('loan_funding', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->decimal('amount');
             $table->bigInteger('loan_id')->unsigned()->index();
@@ -32,6 +32,6 @@ class CreateLoanFundingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loan_fundings');
+        Schema::dropIfExists('loan_funding');
     }
 }

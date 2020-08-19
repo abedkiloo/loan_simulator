@@ -100725,49 +100725,55 @@ var routes = [{
   path: "/",
   name: "home",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/ExampleComponent */ "./resources/js/components/ExampleComponent.vue"));
   }
 }, {
   path: "/login",
   name: "login",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/customer/UserLogin */ "./resources/js/components/customer/UserLogin.vue"));
+    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/customer/UserLogin */ "./resources/js/components/customer/UserLogin.vue"));
   }
 }, {
   path: "/register",
   name: "register",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 3).then(__webpack_require__.bind(null, /*! ./components/customer/UserRegister */ "./resources/js/components/customer/UserRegister.vue"));
+    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/customer/UserRegister */ "./resources/js/components/customer/UserRegister.vue"));
   }
 }, {
   path: "/profile",
   name: "profile",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 7).then(__webpack_require__.bind(null, /*! ./components/customer/UserProfile */ "./resources/js/components/customer/UserProfile.vue"));
+    return __webpack_require__.e(/*! import() */ 8).then(__webpack_require__.bind(null, /*! ./components/customer/UserProfile */ "./resources/js/components/customer/UserProfile.vue"));
   }
 }, {
   path: "/customer",
   name: "customers",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/customer/UserComponent */ "./resources/js/components/customer/UserComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 2).then(__webpack_require__.bind(null, /*! ./components/customer/UserComponent */ "./resources/js/components/customer/UserComponent.vue"));
   }
 }, {
   path: "/loans",
   name: "loans",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 4).then(__webpack_require__.bind(null, /*! ./components/loans/LoansComponent */ "./resources/js/components/loans/LoansComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/loans/LoansComponent */ "./resources/js/components/loans/LoansComponent.vue"));
   }
 }, {
   path: "/transaction",
   name: "transaction",
   component: function component() {
-    return __webpack_require__.e(/*! import() */ 5).then(__webpack_require__.bind(null, /*! ./components/transactions/TransactionsComponent */ "./resources/js/components/transactions/TransactionsComponent.vue"));
+    return __webpack_require__.e(/*! import() */ 6).then(__webpack_require__.bind(null, /*! ./components/transactions/TransactionsComponent */ "./resources/js/components/transactions/TransactionsComponent.vue"));
   }
 }, {
   path: "/payment",
   name: "payment",
   component: function component() {
     return __webpack_require__.e(/*! import() */ 0).then(__webpack_require__.bind(null, /*! ./components/payments/PaymentsComponent */ "./resources/js/components/payments/PaymentsComponent.vue"));
+  }
+}, {
+  path: "/loan-funding",
+  name: "loan-funding",
+  component: function component() {
+    return __webpack_require__.e(/*! import() */ 1).then(__webpack_require__.bind(null, /*! ./components/loan_funding/LoanFundingComponent */ "./resources/js/components/loan_funding/LoanFundingComponent.vue"));
   }
 }];
 
@@ -100856,6 +100862,58 @@ var AuthService = /*#__PURE__*/function () {
 }();
 
 /* harmony default export */ __webpack_exports__["default"] = (new AuthService());
+
+/***/ }),
+
+/***/ "./resources/js/services/loanFunding.service.js":
+/*!******************************************************!*\
+  !*** ./resources/js/services/loanFunding.service.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _auth_header__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./auth-header */ "./resources/js/services/auth-header.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var header = {
+  headers: Object(_auth_header__WEBPACK_IMPORTED_MODULE_1__["default"])()
+};
+
+var LoanFundingService = /*#__PURE__*/function () {
+  function LoanFundingService() {
+    _classCallCheck(this, LoanFundingService);
+  }
+
+  _createClass(LoanFundingService, [{
+    key: "submitLoanFunding",
+    value: function submitLoanFunding(loan) {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('api/loan_funding', {
+        amount: loan.amount,
+        loan_id: loan.loan_id,
+        lender_id: loan.lender_id
+      }, header);
+    }
+  }, {
+    key: "allLoanFunding",
+    value: function allLoanFunding() {
+      return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('api/loan_funding', header);
+    }
+  }]);
+
+  return LoanFundingService;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new LoanFundingService());
 
 /***/ }),
 
@@ -101114,6 +101172,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _loan_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./loan.module */ "./resources/js/store/loan.module.js");
 /* harmony import */ var _transactions_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./transactions.module */ "./resources/js/store/transactions.module.js");
 /* harmony import */ var _payments_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./payments.module */ "./resources/js/store/payments.module.js");
+/* harmony import */ var _loanFunding_module__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./loanFunding.module */ "./resources/js/store/loanFunding.module.js");
+
 
 
 
@@ -101126,7 +101186,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     auth: _auth_module__WEBPACK_IMPORTED_MODULE_2__["auth"],
     loan: _loan_module__WEBPACK_IMPORTED_MODULE_3__["loan"],
     transactions: _transactions_module__WEBPACK_IMPORTED_MODULE_4__["transactions"],
-    payments: _payments_module__WEBPACK_IMPORTED_MODULE_5__["payments"]
+    payments: _payments_module__WEBPACK_IMPORTED_MODULE_5__["payments"],
+    loan_funding: _loanFunding_module__WEBPACK_IMPORTED_MODULE_6__["loan_funding"]
   }
 }));
 
@@ -101185,6 +101246,48 @@ var loan = {
     },
     updateFailure: function updateFailure(state) {
       state.update = false;
+      state.loan = null;
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/store/loanFunding.module.js":
+/*!**************************************************!*\
+  !*** ./resources/js/store/loanFunding.module.js ***!
+  \**************************************************/
+/*! exports provided: loan_funding */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "loan_funding", function() { return loan_funding; });
+/* harmony import */ var _services_loanFunding_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/loanFunding.service */ "./resources/js/services/loanFunding.service.js");
+
+var initialState = {};
+var loan_funding = {
+  namespaced: true,
+  state: initialState,
+  actions: {
+    submit_loan_funding: function submit_loan_funding(_ref, loan_funding) {
+      var commit = _ref.commit;
+      return _services_loanFunding_service__WEBPACK_IMPORTED_MODULE_0__["default"].submitLoanFunding(loan_funding).then(function (loan_funding) {
+        commit('loan_fundingSuccess', loan_funding);
+        return Promise.resolve(loan_funding);
+      }, function (error) {
+        commit('loan_fundingFailure');
+        return Promise.reject(error);
+      });
+    }
+  },
+  mutations: {
+    loan_fundingSuccess: function loan_fundingSuccess(state, loan) {
+      state.transacted = true;
+      state.loan = loan;
+    },
+    loan_fundingFailure: function loan_fundingFailure(state) {
+      state.transacted = false;
       state.loan = null;
     }
   }
@@ -101254,7 +101357,6 @@ var transactions = {
   actions: {
     make_transaction: function make_transaction(_ref, transaction) {
       var commit = _ref.commit;
-      console.log("arrived");
       return _services_transactions_service__WEBPACK_IMPORTED_MODULE_0__["default"].makeTransaction(transaction).then(function (transaction) {
         commit('transactionSuccess', transaction);
         return Promise.resolve(transaction);

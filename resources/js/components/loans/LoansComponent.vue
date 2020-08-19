@@ -19,6 +19,8 @@
                 </li>
                 <li class="nav-item">
                     <router-link v-if="currentUser" to="/payment" class="nav-link">Payment</router-link>
+                </li><li class="nav-item">
+                    <router-link v-if="currentUser" to="/loan-funding" class="nav-link">Loan Funding</router-link>
                 </li>
             </div>
 

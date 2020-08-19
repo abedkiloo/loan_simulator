@@ -7,7 +7,6 @@ export const transactions = {
     state: initialState,
     actions: {
         make_transaction({commit}, transaction) {
-            console.log("arrived")
             return TransactionsService.makeTransaction(transaction).then(
                 transaction => {
                     commit('transactionSuccess', transaction);

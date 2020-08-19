@@ -34,6 +34,11 @@ export const routes = [
         name: "payment",
         component: () => import("./components/payments/PaymentsComponent")
     },
+    {
+        path: "/loan-funding",
+        name: "loan-funding",
+        component: () => import("./components/loan_funding/LoanFundingComponent")
+    },
 
 
 ];
